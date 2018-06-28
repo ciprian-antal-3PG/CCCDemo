@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D102ADEA20E4BB3700E63F2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102ADE920E4BB3700E63F2C /* AppDelegate.swift */; };
-		D102ADEC20E4BB3700E63F2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102ADEB20E4BB3700E63F2C /* ViewController.swift */; };
+		D102ADEC20E4BB3700E63F2C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102ADEB20E4BB3700E63F2C /* LoginViewController.swift */; };
 		D102ADEF20E4BB3700E63F2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D102ADED20E4BB3700E63F2C /* Main.storyboard */; };
 		D102ADF120E4BB3900E63F2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D102ADF020E4BB3900E63F2C /* Assets.xcassets */; };
 		D102ADF420E4BB3900E63F2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D102ADF220E4BB3900E63F2C /* LaunchScreen.storyboard */; };
@@ -20,7 +20,7 @@
 		780DD1A70240404678D4A52C /* Pods-GeicoCCC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeicoCCC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeicoCCC/Pods-GeicoCCC.debug.xcconfig"; sourceTree = "<group>"; };
 		D102ADE620E4BB3700E63F2C /* GeicoCCC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeicoCCC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D102ADE920E4BB3700E63F2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D102ADEB20E4BB3700E63F2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D102ADEB20E4BB3700E63F2C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D102ADEE20E4BB3700E63F2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D102ADF020E4BB3900E63F2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D102ADF320E4BB3900E63F2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -79,10 +79,10 @@
 			isa = PBXGroup;
 			children = (
 				D102ADE920E4BB3700E63F2C /* AppDelegate.swift */,
-				D102ADEB20E4BB3700E63F2C /* ViewController.swift */,
+				D102ADEB20E4BB3700E63F2C /* LoginViewController.swift */,
 				D102ADED20E4BB3700E63F2C /* Main.storyboard */,
-				D102ADF020E4BB3900E63F2C /* Assets.xcassets */,
 				D102ADF220E4BB3900E63F2C /* LaunchScreen.storyboard */,
+				D102ADF020E4BB3900E63F2C /* Assets.xcassets */,
 				D102ADF520E4BB3900E63F2C /* Info.plist */,
 			);
 			path = GeicoCCC;
@@ -218,7 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D102ADEC20E4BB3700E63F2C /* ViewController.swift in Sources */,
+				D102ADEC20E4BB3700E63F2C /* LoginViewController.swift in Sources */,
 				D102ADEA20E4BB3700E63F2C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,7 +366,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = GeicoCCC/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.geico.GeicoCCC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -381,7 +384,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = GeicoCCC/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.geico.GeicoCCC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
