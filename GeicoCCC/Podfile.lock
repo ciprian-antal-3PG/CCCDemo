@@ -6,10 +6,15 @@ DEPENDENCIES:
   - CCCPhotoCaptureComponent
   - CCCSDK
 
+SPEC REPOS:
+  https://github.com/cccuser/CCCSpecs:
+    - CCCPhotoCaptureComponent
+    - CCCSDK
+
 SPEC CHECKSUMS:
   CCCPhotoCaptureComponent: ef30c8ab339badd5a20f12d96acaa195659f1538
   CCCSDK: 0b9e3ee97ecfdb9b4079e920e67cb6ca663b7899
 
 PODFILE CHECKSUM: 57c6c612fc3502d2c86858efc0535c163e937488
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3
