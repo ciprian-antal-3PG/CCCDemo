@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CCCPhotoComponents
 
 class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -61,6 +62,14 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     }
     
     @IBAction func didTapPhotoCapture(_ sender: Any) {
+        if let claimId = UserDefaults.standard.value(forKey: "CCCClaimId") as? String {
+            let photoCaptureVC: CCCPhotoCaptureVC = CCCPhotoUtils.photoCaptureView(withClaimId: claimId,
+                                                                                   vehicleType: CCCQECaptureVehicleTypeSED,
+                                                                                   delegate: self, skipVINThumbnail: false,
+                                                                                   withDataArray: nil)
+            navigationController?.pushViewController(photoCaptureVC, animated: true)
+        }
+
     }
     
     @IBAction func didTapPhotoUpload(_ sender: Any) {
@@ -75,5 +84,14 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         // Pass the selected object to the new view controller.
     }
     */
+}
 
+extension HomeViewController: CCCPhotoUtilsDelegate {
+    func continueButtonTouched(_ storeEntities: [PhotoModel]!) {
+        // TODO: Save photos
+    }
+
+    func permissionErrorHandle(_ controller: CCCPhotoCaptureVC!, errorCode code: CCCPermissionErrorCode) {
+        // TODO: Present errors
+    }
 }

@@ -53,7 +53,8 @@ class LoginViewController: UIViewController {
                     UserDefaults.standard.set(sessionToken, forKey: "CCCSessionToken")
                     UserDefaults.standard.set(claimId, forKey: "CCCClaimId")
 
-                    //TODO: Navigate to home
+                    let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController")
+                    self?.navigationController?.pushViewController(homeVC, animated: true)
                 }
             }
         }
