@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import CCCSDK
 import CCCPhotoComponents
 
 class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
+    
     @IBOutlet weak var numberOfCarPhotosLabel: UILabel!
     @IBOutlet weak var photosLabel: UILabel!
     @IBOutlet weak var styleSwitch: UISwitch!
@@ -18,23 +19,29 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBOutlet weak var carPickerView: UIPickerView!
     @IBOutlet weak var carTypeLabel: UILabel!
     
-    var pickerData: [String] = [String]()
-    var isVINEnabled: Bool = true
-    var isFreeStyle: Bool = false
+    private var pickerData: [String] = [String]()
+    private var isVINEnabled: Bool = true
+    private var isFreeStyle: Bool = false
+    private var selectedVehicleType: CCCQECaptureVehicleType = CCCQECaptureVehichleTypeUNKNOWN
+    
+    private let vehicleTypesDict = ["Unknown": CCCQECaptureVehichleTypeUNKNOWN,
+                                    "Sedan": CCCQECaptureVehicleTypeSED,
+                                    "SUV": CCCQECaptureVehicleTypeSUV,
+                                    "Coupe": CCCQECaptureVehicleTypeCOUPE,
+                                    "HatchBack": CCCQECaptureVehicleTypeHATCHBACK,
+                                    "Van": CCCQECaptureVehicleTypeVAN,
+                                    "Wagon": CCCQECaptureVehicleTypeWAGON]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.carPickerView.delegate = self
         self.carPickerView.dataSource = self
-
-        pickerData = ["SUV","Car","Van","Bus"]
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        pickerData = Array(vehicleTypesDict.keys)
+        self.styleSwitch .setOn(false, animated: false)
+        self.skipVINSwitch .setOn(false, animated: false)
+        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -50,15 +57,19 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("i selected ", row)
+        if let auxSelectedVehicle = vehicleTypesDict[pickerData[row]] {
+            self.selectedVehicleType = auxSelectedVehicle
+        }
     }
     
     @IBAction func didTapStyleToggle(_ sender: Any) {
         print("Toggled Style")
+        self.isFreeStyle = self.styleSwitch.isOn
     }
-
+    
     @IBAction func didTapVinSwitch(_ sender: Any) {
-        print("Toggled VIN enable/disable")
+        print("Toggled VIN enable/disablre")
+        self.isVINEnabled = !self.skipVINSwitch.isOn
     }
     
     @IBAction func didTapPhotoCapture(_ sender: Any) {
@@ -74,18 +85,7 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     @IBAction func didTapPhotoUpload(_ sender: Any) {
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }
-
 extension HomeViewController: CCCPhotoUtilsDelegate {
     func continueButtonTouched(_ storeEntities: [PhotoModel]!) {
         // TODO: Save photos
