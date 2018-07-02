@@ -8,13 +8,13 @@
 
 import UIKit
 import CCCSDK
+import CCCPhotoComponents
 
 class LoginViewController: UIViewController {
 
     @IBOutlet private weak var claimIdTextField: UITextField!
     @IBOutlet private weak var lastNameTextField: UITextField!
-
-    @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,23 +27,34 @@ class LoginViewController: UIViewController {
 
     @IBAction private func loginButtonPressed(_ sender: UIButton) {
         hideKeyboard()
+        activityIndicator.startAnimating()
 
-        guard let claimId = claimIdTextField.text, let lastName = lastNameTextField.text else {
-            // TODO: Present error: Credentials not provided
+        guard let claimId = claimIdTextField.text, claimId != "", let lastName = lastNameTextField.text, lastName != "" else {
+            let alert = UIAlertController(title: "Login error", message: "Please provide credentials.",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            present(alert, animated: true)
+
+            activityIndicator.stopAnimating()
+
             return
         }
 
-        CCCAuth.validate(withClaimID: claimId, lastName: lastName) { (cccAuth, error) in
+        CCCAuth.validate(withClaimID: claimId, lastName: lastName) { [weak self] (cccAuth, error) in
+            self?.activityIndicator.stopAnimating()
+
             if let error = error {
-                // TODO:
-                print(error.localizedDescription)
+                let alert = UIAlertController(title: "Login error", message: error.localizedDescription,
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                self?.present(alert, animated: true)
             } else {
-                // save user Id and session Id
                 if let sessionToken = cccAuth?.sessionToken {
-                    //TODO: Save session Token and Navigate to home
                     UserDefaults.standard.set(sessionToken, forKey: "CCCSessionToken")
+                    UserDefaults.standard.set(claimId, forKey: "CCCClaimId")
+
+                    //TODO: Navigate to home
                 }
-                print("USER ID: \(cccAuth?.userId))" + "/nSESSION ID: \(cccAuth?.sessionToken)")
             }
         }
     }
