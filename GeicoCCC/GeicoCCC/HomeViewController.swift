@@ -19,7 +19,8 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBOutlet private weak var carPickerView: UIPickerView!
     @IBOutlet private weak var carTypeLabel: UILabel!
     @IBOutlet private weak var progressView: UIProgressView!
-
+    @IBOutlet private weak var uploadPhotosButton: UIButton!
+    
     private var pickerData: [String] = [String]()
     private var skipVIN: Bool = false
     private var isWizardStyle: Bool = true
@@ -41,6 +42,9 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         carPickerView.dataSource = self
         
         pickerData = Array(vehicleTypesDict.keys)
+        
+        numberOfCarPhotosLabel.text = "0"
+        uploadPhotosButton.isEnabled = false
     }
 
     // MARK: UIPickerViewDataSource
@@ -111,6 +115,12 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
 extension HomeViewController: CCCPhotoUtilsDelegate {
     func continueButtonTouched(_ storeEntities: [PhotoModel]!) {
         // TODO: Save photos
+        
+        if (storeEntities.count > 0) {
+            uploadPhotosButton.isEnabled = true
+            numberOfCarPhotosLabel.text = "\(storeEntities.count)"
+        }
+        
         navigationController?.popViewController(animated: true)
     }
 
