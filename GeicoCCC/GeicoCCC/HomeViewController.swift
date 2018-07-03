@@ -20,12 +20,18 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBOutlet private weak var carTypeLabel: UILabel!
     @IBOutlet private weak var progressView: UIProgressView!
     @IBOutlet private weak var uploadPhotosButton: UIButton!
-    
+    @IBOutlet private weak var uploadedPhotosLabel: UILabel!
+
     private var pickerData: [String] = [String]()
     private var skipVIN: Bool = false
     private var isWizardStyle: Bool = true
     private var selectedVehicleType: CCCQECaptureVehicleType = CCCQECaptureVehichleTypeUNKNOWN
     private var photoCaptureVC: CCCPhotoCaptureVC?
+    private var uploadedPhotosCount: Int = 0 {
+        didSet {
+            uploadedPhotosLabel.text = "\(uploadedPhotosCount)"
+        }
+    }
     
     private let vehicleTypesDict = ["Unknown": CCCQECaptureVehichleTypeUNKNOWN,
                                     "Sedan": CCCQECaptureVehicleTypeSED,
@@ -42,9 +48,6 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         carPickerView.dataSource = self
         
         pickerData = Array(vehicleTypesDict.keys)
-        
-        numberOfCarPhotosLabel.text = "0"
-        uploadPhotosButton.isEnabled = false
     }
 
     // MARK: UIPickerViewDataSource
@@ -92,21 +95,27 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBAction func didTapPhotoUpload(_ sender: Any) {
         if let photoCaptureVC = photoCaptureVC, let photos = photoCaptureVC.allPhotoCaptureWithDetails(),
             let sessionId = UserDefaults.standard.value(forKey: "CCCSessionToken") as? String {
+            progressView.progress = 0
             progressView.isHidden = false
+            uploadedPhotosCount = 0
 
             CCCUploadImages.uploadImagesInBackground(withImageList: photos, sessionID: sessionId, success: { [weak self] _ in
-                let alert = UIAlertController(title: "Done.", message: "Upload successfully finished.",
-                                              preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-                self?.present(alert, animated: true)
-
+                self?.uploadedPhotosCount += 1
             }, failure: { [weak self] (error) in
                 let alert = UIAlertController(title: "Upload error.", message: error?.localizedDescription,
                                               preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                 self?.present(alert, animated: true)
             }) { [weak self] (progress) in
-                self?.progressView.progress = progress
+                self?.progressView.progress = progress / 100
+
+                if progress == 100 {
+                    let alert = UIAlertController(title: "Upload finished.", message: "Success.",
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                    self?.present(alert, animated: true)
+                    self?.progressView.isHidden = true
+                }
             }
         }
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wfn-X2-3p4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wfn-X2-3p4">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -95,8 +95,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="X/Y" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFn-Sf-dIS">
-                                <rect key="frame" x="27" y="73" width="27" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFn-Sf-dIS">
+                                <rect key="frame" x="27" y="73" width="10.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="dms-up-vhO"/>
                                 </constraints>
@@ -104,8 +104,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cM6-0T-u3A">
-                                <rect key="frame" x="77" y="73" width="282" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saved Photos  |  Uploaded" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cM6-0T-u3A">
+                                <rect key="frame" x="60.5" y="73" width="251" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="7po-Af-Fs9"/>
                                 </constraints>
@@ -119,7 +119,7 @@
                                     <action selector="didTapStyleToggle:" destination="raV-SB-E2A" eventType="valueChanged" id="u3A-5a-Hrf"/>
                                 </connections>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dnu-D5-ADo">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Dnu-D5-ADo">
                                 <rect key="frame" x="27" y="185" width="51" height="31"/>
                                 <connections>
                                     <action selector="didTapVinSwitch:" destination="raV-SB-E2A" eventType="valueChanged" id="zgZ-UX-OKF"/>
@@ -163,7 +163,7 @@
                                     <action selector="didTapPhotoCapture:" destination="raV-SB-E2A" eventType="touchUpInside" id="fTC-up-EoU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INI-Vt-XxT">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INI-Vt-XxT">
                                 <rect key="frame" x="16" y="487" width="343" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="ege-TR-mmy"/>
@@ -173,13 +173,27 @@
                                     <action selector="didTapPhotoUpload:" destination="raV-SB-E2A" eventType="touchUpInside" id="QgT-0Y-BeJ"/>
                                 </connections>
                             </button>
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7H7-vy-M8o">
+                                <rect key="frame" x="112.5" y="537" width="150" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="obh-Ra-nJm"/>
+                                </constraints>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cye-ot-XXO">
+                                <rect key="frame" x="334.5" y="73" width="10.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="QzF-Fg-P6t" firstAttribute="trailing" secondItem="Cye-ot-XXO" secondAttribute="trailing" constant="30" id="7cd-vi-Qff"/>
                             <constraint firstItem="z18-Gj-wbt" firstAttribute="top" secondItem="AFn-Sf-dIS" secondAttribute="bottom" constant="30" id="7oo-u0-Ri2"/>
                             <constraint firstItem="INI-Vt-XxT" firstAttribute="leading" secondItem="QzF-Fg-P6t" secondAttribute="leading" constant="16" id="8BO-6y-Srw"/>
                             <constraint firstItem="INI-Vt-XxT" firstAttribute="top" secondItem="7LY-2r-Xh0" secondAttribute="bottom" constant="42" id="By5-eN-LXH"/>
                             <constraint firstItem="QzF-Fg-P6t" firstAttribute="trailing" secondItem="BTt-j9-lt1" secondAttribute="trailing" constant="16" id="CJE-fC-syb"/>
+                            <constraint firstItem="Cye-ot-XXO" firstAttribute="leading" secondItem="cM6-0T-u3A" secondAttribute="trailing" constant="23" id="DL6-2f-bJ6"/>
                             <constraint firstItem="BTt-j9-lt1" firstAttribute="height" secondItem="Dnu-D5-ADo" secondAttribute="height" id="HK8-dL-fed"/>
                             <constraint firstItem="cM6-0T-u3A" firstAttribute="leading" secondItem="AFn-Sf-dIS" secondAttribute="trailing" constant="23" id="HV2-8u-qZu"/>
                             <constraint firstItem="GOc-uH-MB2" firstAttribute="centerY" secondItem="zGI-dY-Kmo" secondAttribute="centerY" id="LdI-21-8lE"/>
@@ -189,11 +203,13 @@
                             <constraint firstItem="7LY-2r-Xh0" firstAttribute="top" secondItem="zGI-dY-Kmo" secondAttribute="bottom" constant="59" id="NsN-UF-Lf0"/>
                             <constraint firstItem="PAI-Vh-CWR" firstAttribute="centerY" secondItem="z18-Gj-wbt" secondAttribute="centerY" id="Rmr-2A-qPX"/>
                             <constraint firstItem="Dnu-D5-ADo" firstAttribute="top" secondItem="z18-Gj-wbt" secondAttribute="bottom" constant="30" id="T34-Zv-4N2"/>
+                            <constraint firstItem="7H7-vy-M8o" firstAttribute="top" secondItem="INI-Vt-XxT" secondAttribute="bottom" constant="20" id="VA1-Uj-oCb"/>
                             <constraint firstItem="cM6-0T-u3A" firstAttribute="centerY" secondItem="AFn-Sf-dIS" secondAttribute="centerY" id="Zrc-al-x3S"/>
                             <constraint firstItem="AFn-Sf-dIS" firstAttribute="leading" secondItem="QzF-Fg-P6t" secondAttribute="leading" constant="27" id="ZvT-Lo-WtZ"/>
+                            <constraint firstItem="7H7-vy-M8o" firstAttribute="centerX" secondItem="QzF-Fg-P6t" secondAttribute="centerX" id="bFB-V3-Ait"/>
                             <constraint firstItem="zGI-dY-Kmo" firstAttribute="top" secondItem="Dnu-D5-ADo" secondAttribute="bottom" constant="30" id="cmz-hO-uF5"/>
                             <constraint firstItem="PAI-Vh-CWR" firstAttribute="height" secondItem="z18-Gj-wbt" secondAttribute="height" id="iIZ-M1-JDh"/>
-                            <constraint firstItem="QzF-Fg-P6t" firstAttribute="trailing" secondItem="cM6-0T-u3A" secondAttribute="trailing" constant="16" id="jsw-xK-7HT"/>
+                            <constraint firstItem="Cye-ot-XXO" firstAttribute="centerY" secondItem="cM6-0T-u3A" secondAttribute="centerY" id="jW9-Lc-WCB"/>
                             <constraint firstItem="zGI-dY-Kmo" firstAttribute="leading" secondItem="QzF-Fg-P6t" secondAttribute="leading" constant="40" id="pK2-zK-xgy"/>
                             <constraint firstItem="7LY-2r-Xh0" firstAttribute="leading" secondItem="QzF-Fg-P6t" secondAttribute="leading" constant="23" id="pv7-Eu-OtE"/>
                             <constraint firstItem="BTt-j9-lt1" firstAttribute="leading" secondItem="Dnu-D5-ADo" secondAttribute="trailing" constant="23" id="qfL-wE-fBg"/>
@@ -212,9 +228,11 @@
                         <outlet property="carTypeLabel" destination="GOc-uH-MB2" id="I0O-fW-byn"/>
                         <outlet property="numberOfCarPhotosLabel" destination="AFn-Sf-dIS" id="Omz-5P-a7I"/>
                         <outlet property="photosLabel" destination="cM6-0T-u3A" id="zCg-h0-Mpb"/>
+                        <outlet property="progressView" destination="7H7-vy-M8o" id="3rE-Hc-F9W"/>
                         <outlet property="skipVINSwitch" destination="Dnu-D5-ADo" id="Fka-1P-mcf"/>
                         <outlet property="styleSwitch" destination="z18-Gj-wbt" id="4H1-Ye-OCU"/>
                         <outlet property="uploadPhotosButton" destination="INI-Vt-XxT" id="SLp-nW-2Ix"/>
+                        <outlet property="uploadedPhotosLabel" destination="Cye-ot-XXO" id="bub-GX-4n9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R4A-of-Mrv" userLabel="First Responder" sceneMemberID="firstResponder"/>
