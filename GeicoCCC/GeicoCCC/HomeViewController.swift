@@ -12,17 +12,19 @@ import CCCPhotoComponents
 
 class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    @IBOutlet weak var numberOfCarPhotosLabel: UILabel!
-    @IBOutlet weak var photosLabel: UILabel!
-    @IBOutlet weak var styleSwitch: UISwitch!
-    @IBOutlet weak var skipVINSwitch: UISwitch!
-    @IBOutlet weak var carPickerView: UIPickerView!
-    @IBOutlet weak var carTypeLabel: UILabel!
-    
+    @IBOutlet private weak var numberOfCarPhotosLabel: UILabel!
+    @IBOutlet private weak var photosLabel: UILabel!
+    @IBOutlet private weak var styleSwitch: UISwitch!
+    @IBOutlet private weak var skipVINSwitch: UISwitch!
+    @IBOutlet private weak var carPickerView: UIPickerView!
+    @IBOutlet private weak var carTypeLabel: UILabel!
+    @IBOutlet private weak var progressView: UIProgressView!
+
     private var pickerData: [String] = [String]()
-    private var isVINEnabled: Bool = true
-    private var isFreeStyle: Bool = false
+    private var skipVIN: Bool = false
+    private var isWizardStyle: Bool = true
     private var selectedVehicleType: CCCQECaptureVehicleType = CCCQECaptureVehichleTypeUNKNOWN
+    private var photoCaptureVC: CCCPhotoCaptureVC?
     
     private let vehicleTypesDict = ["Unknown": CCCQECaptureVehichleTypeUNKNOWN,
                                     "Sedan": CCCQECaptureVehicleTypeSED,
@@ -35,14 +37,13 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.carPickerView.delegate = self
-        self.carPickerView.dataSource = self
+        carPickerView.delegate = self
+        carPickerView.dataSource = self
         
         pickerData = Array(vehicleTypesDict.keys)
-        self.styleSwitch .setOn(false, animated: false)
-        self.skipVINSwitch .setOn(false, animated: false)
-        
     }
+
+    // MARK: UIPickerViewDataSource
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -51,44 +52,66 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerData.count
     }
-    
+
+    // MARK: UIPickerViewDelegate
+
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerData[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if let auxSelectedVehicle = vehicleTypesDict[pickerData[row]] {
-            self.selectedVehicleType = auxSelectedVehicle
+            selectedVehicleType = auxSelectedVehicle
         }
     }
     
     @IBAction func didTapStyleToggle(_ sender: Any) {
         print("Toggled Style")
-        self.isFreeStyle = self.styleSwitch.isOn
+        isWizardStyle = styleSwitch.isOn
     }
     
     @IBAction func didTapVinSwitch(_ sender: Any) {
-        print("Toggled VIN enable/disablre")
-        self.isVINEnabled = !self.skipVINSwitch.isOn
+        print("Toggled VIN enable/disable")
+        skipVIN = skipVINSwitch.isOn
     }
     
     @IBAction func didTapPhotoCapture(_ sender: Any) {
         if let claimId = UserDefaults.standard.value(forKey: "CCCClaimId") as? String {
-            let photoCaptureVC: CCCPhotoCaptureVC = CCCPhotoUtils.photoCaptureView(withClaimId: claimId,
-                                                                                   vehicleType: CCCQECaptureVehicleTypeSED,
-                                                                                   delegate: self, skipVINThumbnail: false,
-                                                                                   withDataArray: nil)
-            navigationController?.pushViewController(photoCaptureVC, animated: true)
+            photoCaptureVC = CCCPhotoUtils.photoCaptureView(withClaimId: claimId, vehicleType: CCCQECaptureVehicleTypeSED,
+                                                            delegate: self, skipVINThumbnail: skipVIN,
+                                                            withDataArray: nil)
+            photoCaptureVC?.enableWizardStyle = isWizardStyle
+            navigationController?.pushViewController(photoCaptureVC!, animated: true)
         }
-
     }
     
     @IBAction func didTapPhotoUpload(_ sender: Any) {
+        if let photoCaptureVC = photoCaptureVC, let photos = photoCaptureVC.allPhotoCaptureWithDetails(),
+            let sessionId = UserDefaults.standard.value(forKey: "CCCSessionToken") as? String {
+            progressView.isHidden = false
+
+            CCCUploadImages.uploadImagesInBackground(withImageList: photos, sessionID: sessionId, success: { [weak self] _ in
+                let alert = UIAlertController(title: "Done.", message: "Upload successfully finished.",
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                self?.present(alert, animated: true)
+
+            }, failure: { [weak self] (error) in
+                let alert = UIAlertController(title: "Upload error.", message: error?.localizedDescription,
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                self?.present(alert, animated: true)
+            }) { [weak self] (progress) in
+                self?.progressView.progress = progress
+            }
+        }
     }
 }
+
 extension HomeViewController: CCCPhotoUtilsDelegate {
     func continueButtonTouched(_ storeEntities: [PhotoModel]!) {
         // TODO: Save photos
+        navigationController?.popViewController(animated: true)
     }
 
     func permissionErrorHandle(_ controller: CCCPhotoCaptureVC!, errorCode code: CCCPermissionErrorCode) {
