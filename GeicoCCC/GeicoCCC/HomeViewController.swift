@@ -21,7 +21,8 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBOutlet private weak var progressView: UIProgressView!
     @IBOutlet private weak var uploadPhotosButton: UIButton!
     @IBOutlet private weak var uploadedPhotosLabel: UILabel!
-
+    @IBOutlet private weak var claimStatusLabel: UILabel!
+    
     private var pickerData: [String] = [String]()
     private var skipVIN: Bool = false
     private var isWizardStyle: Bool = true
@@ -44,6 +45,19 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let token = UserDefaults.standard.string(forKey: "CCCSessionToken")
+        {
+            CCCWorkflowStatus.fetch(withSessionID: token) {[weak self] (status, err) in
+                if err != nil {
+                    //Handle error
+                    self?.claimStatusLabel.text = "Claim Status: Unable to fetch"
+                } else {
+                    self?.claimStatusLabel.text = "Claim Status: \(self?.formatTypeToString(wfs: status) ?? "UNKNOWN")"
+                }
+            }
+            
+        }
+
         carPickerView.delegate = self
         carPickerView.dataSource = self
         
@@ -119,6 +133,33 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             }
         }
     }
+    
+    func formatTypeToString(wfs:WorkflowStatus) -> String {
+        var result = ""
+        switch wfs {
+        case UNKNOWN:
+            result = "UNKNOWN"
+        case NEW_USER:
+            result = "NEW USER"
+        case PRE_UPLOAD:
+            result = "PRE UPLOAD"
+        case POST_UPLOAD:
+            result = "POST UPLOAD"
+        case ESTIMATE_AVAILABLE:
+            result = "ESTIMATE AVAILABLE"
+        case APPRAISER_SELECTED:
+            result = "APPRAISER SELECTED"
+        case PAYMENT_REQUESTED:
+            result = "PAYMENT REQUESTED"
+        case CANCEL_ASSIGNMENT:
+            result = "CANCELLED ASSINGMENT"
+        default:
+            result = ""
+        }
+        
+        return result
+    }
+
 }
 
 extension HomeViewController: CCCPhotoUtilsDelegate {
