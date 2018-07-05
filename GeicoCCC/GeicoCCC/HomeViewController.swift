@@ -44,24 +44,8 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let token = UserDefaults.standard.string(forKey: "CCCSessionToken")
-        {
-            CCCWorkflowStatus.fetch(withSessionID: token) {[weak self] (status, err) in
-                if err != nil {
-                    //Handle error
-                    self?.claimStatusLabel.text = "Claim Status: Unable to fetch"
-                } else {
-                    self?.claimStatusLabel.text = "Claim Status: \(self?.formatTypeToString(wfs: status) ?? "UNKNOWN")"
-                }
-            }
-            
-        }
 
-        carPickerView.delegate = self
-        carPickerView.dataSource = self
-        
-        pickerData = Array(vehicleTypesDict.keys)
+        setup()
     }
 
     // MARK: UIPickerViewDataSource
@@ -85,20 +69,20 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             selectedVehicleType = auxSelectedVehicle
         }
     }
-    
-    @IBAction func didTapStyleToggle(_ sender: Any) {
-        print("Toggled Style")
+
+    // MARK: UI Actions
+
+    @IBAction private func didTapStyleToggle(_ sender: Any) {
         isWizardStyle = styleSwitch.isOn
     }
     
-    @IBAction func didTapVinSwitch(_ sender: Any) {
-        print("Toggled VIN enable/disable")
+    @IBAction private func didTapVinSwitch(_ sender: Any) {
         skipVIN = skipVINSwitch.isOn
     }
     
-    @IBAction func didTapPhotoCapture(_ sender: Any) {
+    @IBAction private func didTapPhotoCapture(_ sender: Any) {
         if let claimId = UserDefaults.standard.value(forKey: "CCCClaimId") as? String {
-            photoCaptureVC = CCCPhotoUtils.photoCaptureView(withClaimId: claimId, vehicleType: CCCQECaptureVehicleTypeSED,
+            photoCaptureVC = CCCPhotoUtils.photoCaptureView(withClaimId: claimId, vehicleType: selectedVehicleType,
                                                             delegate: self, skipVINThumbnail: skipVIN,
                                                             withDataArray: nil)
             photoCaptureVC?.enableWizardStyle = isWizardStyle
@@ -106,7 +90,7 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         }
     }
     
-    @IBAction func didTapPhotoUpload(_ sender: Any) {
+    @IBAction private func didTapPhotoUpload(_ sender: Any) {
         if let photoCaptureVC = photoCaptureVC, let photos = photoCaptureVC.allPhotoCaptureWithDetails(),
             let sessionId = UserDefaults.standard.value(forKey: "CCCSessionToken") as? String {
             progressView.progress = 0
@@ -133,8 +117,46 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             }
         }
     }
-    
-    func formatTypeToString(wfs:WorkflowStatus) -> String {
+
+    // MARK: Private
+
+    private func setup() {
+        setupPickerView()
+        setupNavigationBar()
+        updateClaimStatus()
+    }
+
+    private func setupNavigationBar() {
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshButtonPressed))
+        navigationItem.rightBarButtonItem = refreshButton
+    }
+
+    @objc private func refreshButtonPressed() {
+        updateClaimStatus()
+    }
+
+    private func setupPickerView() {
+        carPickerView.delegate = self
+        carPickerView.dataSource = self
+
+        pickerData = Array(vehicleTypesDict.keys)
+    }
+
+    private func updateClaimStatus() {
+        claimStatusLabel.text = "Claim Status: Loading..."
+
+        if let token = UserDefaults.standard.string(forKey: "CCCSessionToken") {
+            CCCWorkflowStatus.fetch(withSessionID: token) { [weak self] (status, error) in
+                if let error = error {
+                    self?.claimStatusLabel.text = error.localizedDescription
+                } else {
+                    self?.claimStatusLabel.text = "Claim Status: \(self?.formatTypeToString(wfs: status) ?? "UNKNOWN")"
+                }
+            }
+        }
+    }
+
+    private func formatTypeToString(wfs:WorkflowStatus) -> String {
         var result = ""
         switch wfs {
         case UNKNOWN:
@@ -159,13 +181,10 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
         return result
     }
-
 }
 
 extension HomeViewController: CCCPhotoUtilsDelegate {
     func continueButtonTouched(_ storeEntities: [PhotoModel]!) {
-        // TODO: Save photos
-        
         if (storeEntities.count > 0) {
             uploadPhotosButton.isEnabled = true
             numberOfCarPhotosLabel.text = "\(storeEntities.count)"
