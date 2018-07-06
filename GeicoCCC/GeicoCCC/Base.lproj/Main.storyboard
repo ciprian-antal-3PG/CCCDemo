@@ -133,15 +133,58 @@
                                     <action selector="didTapPhotoCapture:" destination="raV-SB-E2A" eventType="touchUpInside" id="fTC-up-EoU"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UgQ-Ts-xj0">
+                                <rect key="frame" x="30" y="342" width="260" height="84.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">!!! Please note:
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="HelveticaNeue-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <font key="NSOriginalFont" size="12" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">The Photo Capture process will require access your camera and your location
+Once the Photo Capture flow is started you will not be able to close it until you will take all the photos that are needed</string>
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="HelveticaNeue"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="11">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="natural" location="36">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Dnu-D5-ADo" firstAttribute="leading" secondItem="QzF-Fg-P6t" secondAttribute="leading" constant="40" id="2px-gi-963"/>
+                            <constraint firstItem="QzF-Fg-P6t" firstAttribute="trailing" secondItem="UgQ-Ts-xj0" secondAttribute="trailing" constant="30" id="30s-ka-4Zq"/>
                             <constraint firstItem="zGI-dY-Kmo" firstAttribute="centerX" secondItem="QzF-Fg-P6t" secondAttribute="centerX" id="7q3-Cc-Asw"/>
                             <constraint firstItem="GOc-uH-MB2" firstAttribute="top" secondItem="Dnu-D5-ADo" secondAttribute="bottom" constant="40" id="HbP-cb-86z"/>
+                            <constraint firstItem="UgQ-Ts-xj0" firstAttribute="top" secondItem="7LY-2r-Xh0" secondAttribute="bottom" constant="12" id="RhP-60-glL"/>
                             <constraint firstItem="zGI-dY-Kmo" firstAttribute="top" secondItem="GOc-uH-MB2" secondAttribute="bottom" constant="10" id="Y9e-dg-CJa"/>
                             <constraint firstItem="QzF-Fg-P6t" firstAttribute="trailing" secondItem="BTt-j9-lt1" secondAttribute="trailing" constant="22" id="YcD-uJ-aTE"/>
                             <constraint firstItem="Dnu-D5-ADo" firstAttribute="top" secondItem="QzF-Fg-P6t" secondAttribute="top" constant="32" id="aWu-DZ-cBF"/>
+                            <constraint firstItem="UgQ-Ts-xj0" firstAttribute="leading" secondItem="QzF-Fg-P6t" secondAttribute="leading" constant="30" id="cxC-vy-hCR"/>
                             <constraint firstItem="BTt-j9-lt1" firstAttribute="centerY" secondItem="Dnu-D5-ADo" secondAttribute="centerY" id="d4M-No-liJ"/>
                             <constraint firstItem="GOc-uH-MB2" firstAttribute="centerX" secondItem="QzF-Fg-P6t" secondAttribute="centerX" id="iWW-1J-bG5"/>
                             <constraint firstItem="7LY-2r-Xh0" firstAttribute="top" secondItem="zGI-dY-Kmo" secondAttribute="bottom" constant="36" id="jNS-zk-KS8"/>
