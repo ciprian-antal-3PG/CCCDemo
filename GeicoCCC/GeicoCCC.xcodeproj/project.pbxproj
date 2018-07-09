@@ -14,6 +14,7 @@
 		D102ADF120E4BB3900E63F2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D102ADF020E4BB3900E63F2C /* Assets.xcassets */; };
 		D102ADF420E4BB3900E63F2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D102ADF220E4BB3900E63F2C /* LaunchScreen.storyboard */; };
 		D17287E620EF677D007E020D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17287E520EF677D007E020D /* BaseViewController.swift */; };
+		D1EDDF3820F3979C009E7A7E /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EDDF3720F3979C009E7A7E /* ReviewViewController.swift */; };
 		D8BA2008302CA7C149C81D82 /* Pods_GeicoCCC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 116CA646E103A5B4CE79B398 /* Pods_GeicoCCC.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		D102ADF320E4BB3900E63F2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D102ADF520E4BB3900E63F2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D17287E520EF677D007E020D /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		D1EDDF3720F3979C009E7A7E /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		E6D34FDA185EE5002EB02255 /* Pods-GeicoCCC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeicoCCC.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeicoCCC/Pods-GeicoCCC.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +87,7 @@
 				D102ADE920E4BB3700E63F2C /* AppDelegate.swift */,
 				D17287E520EF677D007E020D /* BaseViewController.swift */,
 				D102ADEB20E4BB3700E63F2C /* LoginViewController.swift */,
+				D1EDDF3720F3979C009E7A7E /* ReviewViewController.swift */,
 				6F81477E20E51F3B007EF23D /* SetupViewController.swift */,
 				D102ADED20E4BB3700E63F2C /* Main.storyboard */,
 				D102ADF220E4BB3900E63F2C /* LaunchScreen.storyboard */,
@@ -210,6 +213,7 @@
 			files = (
 				D102ADEC20E4BB3700E63F2C /* LoginViewController.swift in Sources */,
 				D17287E620EF677D007E020D /* BaseViewController.swift in Sources */,
+				D1EDDF3820F3979C009E7A7E /* ReviewViewController.swift in Sources */,
 				D102ADEA20E4BB3700E63F2C /* AppDelegate.swift in Sources */,
 				6F81477F20E51F3B007EF23D /* SetupViewController.swift in Sources */,
 			);

@@ -87,10 +87,10 @@
             </objects>
             <point key="canvasLocation" x="2018.4000000000001" y="133.5832083958021"/>
         </scene>
-        <!--SETUP-->
+        <!--Setup-->
         <scene sceneID="S63-KW-qRw">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" title="SETUP" id="raV-SB-E2A" customClass="SetupViewController" customModule="GeicoCCC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" title="Setup" id="raV-SB-E2A" customClass="SetupViewController" customModule="GeicoCCC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qLS-B4-JfD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -202,6 +202,21 @@ Once the Photo Capture flow is started you will not be able to close it until yo
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R4A-of-Mrv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2832.8000000000002" y="133.5832083958021"/>
+        </scene>
+        <!--Review-->
+        <scene sceneID="eE3-eE-Wpt">
+            <objects>
+                <viewController storyboardIdentifier="ReviewViewController" title="Review" id="CGh-hp-Pju" customClass="ReviewViewController" customModule="GeicoCCC" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dlc-9p-NRC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="I5C-1i-NO4"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QZt-zX-Sgf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3518" y="133"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="AAo-m7-S9K">

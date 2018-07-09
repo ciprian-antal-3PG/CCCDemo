@@ -142,6 +142,13 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
 
 extension SetupViewController: CCCPhotoUtilsDelegate {
     func continueButtonTouched(_ storeEntities: [PhotoModel]!) {
+        if storeEntities.count > 0, var viewControllers = navigationController?.viewControllers {
+            let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReviewViewController")
+            viewControllers.append(homeVC)
+
+            navigationController?.viewControllers = viewControllers
+        }
+
         photoCaptureVC?.dismiss(animated: true)
     }
 
