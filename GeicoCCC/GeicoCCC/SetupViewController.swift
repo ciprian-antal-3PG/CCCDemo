@@ -64,11 +64,27 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     @IBAction private func didTapPhotoCapture(_ sender: Any) {
-        if let claimId = UserDefaults.standard.value(forKey: "CCCClaimId") as? String {
-            photoCaptureVC = CCCPhotoUtils.photoCaptureView(withClaimId: claimId, vehicleType: selectedVehicleType,
-                                                            delegate: self, skipVINThumbnail: skipVIN,
-                                                            withDataArray: nil)
-            navigationController?.pushViewController(photoCaptureVC!, animated: true)
+        checkCameraPermission { [weak self] (authorized) in
+            guard let strongSelf = self else { return }
+            guard let claimId = UserDefaults.standard.value(forKey: "CCCClaimId") as? String else { return }
+
+            if !authorized {
+                strongSelf.displayAlert(title: "Camera access needed", message: "Permission needed to continue photo capturing.")
+
+                return
+            }
+
+            if !strongSelf.checkLocationPermission() {
+                strongSelf.displayAlert(title: "Location access needed", message: "Location message.")
+
+                return
+            }
+            strongSelf.photoCaptureVC = CCCPhotoUtils.photoCaptureView(withClaimId: claimId,
+                                                                       vehicleType: strongSelf.selectedVehicleType,
+                                                                       delegate: self,
+                                                                       skipVINThumbnail: strongSelf.skipVIN,
+                                                                       withDataArray: nil)
+            strongSelf.present(strongSelf.photoCaptureVC!, animated: true)
         }
     }
 
@@ -88,15 +104,52 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
             selectedVehicleType = auxSelectedVehicle
         }
     }
+
+    private func checkCameraPermission(completion: ((Bool) -> ())?) {
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized:
+            completion?(true)
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) { granted in
+                DispatchQueue.main.async {
+                    if granted {
+                        completion?(true)
+                    } else {
+                        completion?(false)
+                    }
+                }
+            }
+        case .denied:
+            completion?(false)
+        case .restricted:
+            completion?(false)
+        }
+    }
+
+    private func checkLocationPermission() -> Bool {
+        return CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+            CLLocationManager.authorizationStatus() == .authorizedAlways ||
+            CLLocationManager.authorizationStatus() == .notDetermined
+    }
+
+    private func displayAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        present(alert, animated: true)
+    }
 }
 
 extension SetupViewController: CCCPhotoUtilsDelegate {
     func continueButtonTouched(_ storeEntities: [PhotoModel]!) {
-        
-        navigationController?.popViewController(animated: true)
+        photoCaptureVC?.dismiss(animated: true)
     }
 
     func permissionErrorHandle(_ controller: CCCPhotoCaptureVC!, errorCode code: CCCPermissionErrorCode) {
-        // TODO: Present errors
+        if code == CCCPermissionErrorCodeLocationDenied || code == CCCPermissionErrorCodeCameraRestricted {
+            controller.dismiss(animated: true) { [weak self] in
+                self?.displayAlert(title: "Location access needed", message: "Location message.")
+            }
+        }
     }
 }
