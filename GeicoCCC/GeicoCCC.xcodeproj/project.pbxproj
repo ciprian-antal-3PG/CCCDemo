@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F05A6DC20EFB44F00C98EA2 /* Claim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F05A6DB20EFB44F00C98EA2 /* Claim.swift */; };
 		6F81477F20E51F3B007EF23D /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F81477E20E51F3B007EF23D /* SetupViewController.swift */; };
 		D102ADEA20E4BB3700E63F2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102ADE920E4BB3700E63F2C /* AppDelegate.swift */; };
-		D102ADEC20E4BB3700E63F2C /* ClaimsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102ADEB20E4BB3700E63F2C /* ClaimsViewController.swift */; };
+		D102ADEC20E4BB3700E63F2C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102ADEB20E4BB3700E63F2C /* LoginViewController.swift */; };
 		D102ADEF20E4BB3700E63F2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D102ADED20E4BB3700E63F2C /* Main.storyboard */; };
 		D102ADF120E4BB3900E63F2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D102ADF020E4BB3900E63F2C /* Assets.xcassets */; };
 		D102ADF420E4BB3900E63F2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D102ADF220E4BB3900E63F2C /* LaunchScreen.storyboard */; };
@@ -20,12 +19,11 @@
 
 /* Begin PBXFileReference section */
 		116CA646E103A5B4CE79B398 /* Pods_GeicoCCC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeicoCCC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6F05A6DB20EFB44F00C98EA2 /* Claim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Claim.swift; sourceTree = "<group>"; };
 		6F81477E20E51F3B007EF23D /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		780DD1A70240404678D4A52C /* Pods-GeicoCCC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeicoCCC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeicoCCC/Pods-GeicoCCC.debug.xcconfig"; sourceTree = "<group>"; };
 		D102ADE620E4BB3700E63F2C /* GeicoCCC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeicoCCC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D102ADE920E4BB3700E63F2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D102ADEB20E4BB3700E63F2C /* ClaimsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimsViewController.swift; sourceTree = "<group>"; };
+		D102ADEB20E4BB3700E63F2C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D102ADEE20E4BB3700E63F2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D102ADF020E4BB3900E63F2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D102ADF320E4BB3900E63F2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -52,14 +50,6 @@
 				116CA646E103A5B4CE79B398 /* Pods_GeicoCCC.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		6F05A6DA20EFB42500C98EA2 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				6F05A6DB20EFB44F00C98EA2 /* Claim.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		AFDDD4BC109B9B84D6D1C097 /* Pods */ = {
@@ -92,10 +82,9 @@
 		D102ADE820E4BB3700E63F2C /* GeicoCCC */ = {
 			isa = PBXGroup;
 			children = (
-				6F05A6DA20EFB42500C98EA2 /* Model */,
 				D102ADE920E4BB3700E63F2C /* AppDelegate.swift */,
 				D17287E520EF677D007E020D /* BaseViewController.swift */,
-				D102ADEB20E4BB3700E63F2C /* ClaimsViewController.swift */,
+				D102ADEB20E4BB3700E63F2C /* LoginViewController.swift */,
 				6F81477E20E51F3B007EF23D /* SetupViewController.swift */,
 				D102ADED20E4BB3700E63F2C /* Main.storyboard */,
 				D102ADF220E4BB3900E63F2C /* LaunchScreen.storyboard */,
@@ -219,10 +208,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D102ADEC20E4BB3700E63F2C /* ClaimsViewController.swift in Sources */,
+				D102ADEC20E4BB3700E63F2C /* LoginViewController.swift in Sources */,
 				D17287E620EF677D007E020D /* BaseViewController.swift in Sources */,
 				D102ADEA20E4BB3700E63F2C /* AppDelegate.swift in Sources */,
-				6F05A6DC20EFB44F00C98EA2 /* Claim.swift in Sources */,
 				6F81477F20E51F3B007EF23D /* SetupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
