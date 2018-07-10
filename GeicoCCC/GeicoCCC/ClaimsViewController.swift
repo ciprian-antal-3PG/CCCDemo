@@ -16,14 +16,14 @@ class ClaimsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var darkBackgroundView: UIView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
-    internal var currentClaims = [Claim]()
+    var currentClaims = [Claim]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         claimsTableView.delegate = self
         claimsTableView.dataSource = self
-        claimsTableView.rowHeight =  60
+        claimsTableView.rowHeight = 60
         
         currentClaims.append(Claim(claimID: "346632058010110601", userName: "Bolten"))
         currentClaims.append(Claim(claimID: "310445072010109201", userName: "Jones"))
@@ -52,9 +52,7 @@ class ClaimsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         activityIndicatorView.isHidden = false
         activityIndicatorView.startAnimating()
         
-        let cell = claimsTableView.cellForRow(at: indexPath)
-        
-        authenticateWith(username: cell?.detailTextLabel?.text, claimID: cell?.textLabel?.text)
+        validateWith(claim: currentClaims[indexPath.row])
             
         claimsTableView.deselectRow(at: indexPath, animated: false)
     }
@@ -66,8 +64,8 @@ class ClaimsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
-    internal func authenticateWith(username: String?,claimID: String?) {
-        CCCAuth.validate(withClaimID: claimID, lastName: username) { [weak self] (cccAuth, error) in
+    func validateWith(claim: Claim) {
+        CCCAuth.validate(withClaimID: claim.claimID, lastName: claim.userName) { [weak self] (cccAuth, error) in
             if let error = error {
                 let alert = UIAlertController(title: "Login error", message: error.localizedDescription,
                                               preferredStyle: .alert)
@@ -76,7 +74,7 @@ class ClaimsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             } else {
                 if let sessionToken = cccAuth?.sessionToken {
                     UserDefaults.standard.set(sessionToken, forKey: "CCCSessionToken")
-                    UserDefaults.standard.set(claimID, forKey: "CCCClaimId")
+                    UserDefaults.standard.set(claim.claimID, forKey: "CCCClaimId")
                     
                     let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController")
                     self?.navigationController?.pushViewController(homeVC, animated: true)
