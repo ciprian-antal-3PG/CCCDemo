@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import CCCPhotoComponents
 
 class ReviewViewController: BaseViewController {
+
+    var photos: [PhotoModel]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
