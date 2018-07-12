@@ -11,5 +11,5 @@ import CCCPhotoComponents
 
 struct PhotosCellViewModel {
     let title: String
-    let photos: [PhotoModel]
+    let photos: [CCCPhotoCaptureItem]
 }
