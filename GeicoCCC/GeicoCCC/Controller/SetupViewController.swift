@@ -145,6 +145,7 @@ extension SetupViewController: CCCPhotoUtilsDelegate {
         if storeEntities.count > 0, var viewControllers = navigationController?.viewControllers,
             let reviewVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReviewViewController") as? ReviewViewController {
             reviewVC.photos = storeEntities
+            reviewVC.photoCaptureVC = photoCaptureVC
             viewControllers.append(reviewVC)
 
             navigationController?.viewControllers = viewControllers

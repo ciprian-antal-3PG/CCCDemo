@@ -8,11 +8,16 @@
 
 import UIKit
 import CCCPhotoComponents
+import CCCSDK
 
 class ReviewViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var uploadButton: UIButton!
+    
+    var photoCaptureVC: CCCPhotoCaptureVC?
+    private var alertView: UIAlertController?
     var photos: [PhotoModel]?
+    var progressView: UIProgressView?
 
     var cellViewModels: [PhotosCellViewModel] = [] {
         didSet {
@@ -25,6 +30,8 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
 
         let cellNib = UINib(nibName: "PhotosTableViewCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "PhotosTableViewCell")
+        
+        uploadButton.layer.cornerRadius = uploadButton.frame.width / 2
 
         cellViewModels = createCellViewModels()
     }
@@ -53,6 +60,52 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
         return [PhotosCellViewModel(title: "Information", photos: infoPhotos),
                 PhotosCellViewModel(title: "Vehicle", photos: vehiclePhotos),
                 PhotosCellViewModel(title: "Damage", photos: damagePhotos)]
+    }
+    
+    @IBAction func didTapUploadPhotos(_ sender: Any) {
+        
+        if let photoCaptureVC = photoCaptureVC, let photos = photoCaptureVC.allPhotoCaptureWithDetails(),
+            let sessionId = UserDefaults.standard.value(forKey: "CCCSessionToken") as? String {
+            presentUploadStatus()
+            var uploadedPhotoCounter = 0
+            
+            CCCUploadImages.uploadImagesInBackground(withImageList: photos, sessionID: sessionId, success: { _ in
+                    uploadedPhotoCounter += 1
+                if uploadedPhotoCounter == photos.count {
+                    self.alertView?.dismiss(animated: true)
+                    let alert = UIAlertController(title: "Upload Successful", message: "\(uploadedPhotoCounter)/\(photos.count) photos finished uploading ", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
+                    self.present(alert, animated:true)
+                }
+                }, failure: { [weak self] (error) in
+                    self?.alertView?.dismiss(animated: true)
+                    let alert = UIAlertController(title: "Upload error.", message: error?.localizedDescription,
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
+                    self?.present(alert, animated: true)
+            }) { [weak self] (progress) in
+                self?.progressView?.progress = progress / 100
+            }
+        }
+    }
+    
+    func presentUploadStatus() {
+        if let alertView = alertView {
+            progressView?.progress = 0
+            present(alertView, animated: true)
+        } else {
+            alertView = UIAlertController(title: "Please wait", message: "Uploading photos", preferredStyle: .alert)
+            guard let alertView = alertView else { return }
+            //alertView.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            let margin: CGFloat = 10.0
+            let rect = CGRect(x: margin, y: 68.0, width: 250.0, height: 2.0)
+            progressView = UIProgressView(frame: rect)
+            progressView?.tintColor = UIColor.blue
+            guard let progressView = progressView else { return }
+            alertView.view.addSubview(progressView)
+            progressView.progress = 0
+            present(alertView, animated: true)
+        }
     }
 }
 
