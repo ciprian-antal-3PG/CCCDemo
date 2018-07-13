@@ -1,0 +1,6 @@
+framework module CCCPhotoComponents {
+  umbrella header "CCCPhotoComponents.h"
+
+  export *
+  module * { export * }
+}
