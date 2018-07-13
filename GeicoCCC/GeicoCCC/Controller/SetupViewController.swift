@@ -69,13 +69,13 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
             guard let claimId = UserDefaults.standard.value(forKey: "CCCClaimId") as? String else { return }
 
             if !authorized {
-                strongSelf.displayAlert(title: "Camera access needed", message: "Permission needed to continue photo capturing.")
+                strongSelf.displayAlert(title: "Camera access needed", message: "Go to Settings to allow camera access.")
 
                 return
             }
 
             if !strongSelf.checkLocationPermission() {
-                strongSelf.displayAlert(title: "Location access needed", message: "Location message.")
+                strongSelf.displayAlert(title: "Location access needed", message: "Go to Settings to enable location services while using the app.")
 
                 return
             }
@@ -144,7 +144,6 @@ extension SetupViewController: CCCPhotoUtilsDelegate {
     func continueButtonTouched(_ storeEntities: [PhotoModel]!) {
         if storeEntities.count > 0, var viewControllers = navigationController?.viewControllers,
             let reviewVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReviewViewController") as? ReviewViewController {
-            reviewVC.photos = storeEntities
             reviewVC.photoCaptureVC = photoCaptureVC
             viewControllers.append(reviewVC)
 

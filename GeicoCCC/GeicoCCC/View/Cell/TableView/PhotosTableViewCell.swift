@@ -11,7 +11,7 @@ import CCCPhotoComponents
 
 class PhotosTableViewCell: UITableViewCell, UICollectionViewDataSource {
 
-    var photos: [PhotoModel] = [] {
+    var photos: [CCCPhotoCaptureItem] = [] {
         didSet {
             collectionView.reloadData()
         }
@@ -34,13 +34,9 @@ class PhotosTableViewCell: UITableViewCell, UICollectionViewDataSource {
         collectionView.dataSource = self
     }
 
-    func setCollectionViewDataSourceDelegate<D: UICollectionViewDelegate>(_ delegate: D) {
-        collectionView.delegate = delegate
-    }
-
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell", for: indexPath) as? PhotoCollectionViewCell {
-            cell.setup(image: photos[indexPath.row].photo, title: photos[indexPath.row].title)
+            cell.setup(image: photos[indexPath.row].photo, title: photos[indexPath.row].photoTitle)
 
             return cell
         }
