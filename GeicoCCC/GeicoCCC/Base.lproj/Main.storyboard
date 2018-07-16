@@ -305,7 +305,6 @@ Once the Photo Capture flow is started you will not be able to exit until you ta
                                 <state key="normal" title="⬆︎">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="highlighted" title="Upload"/>
                                 <connections>
                                     <action selector="didTapUploadPhotos:" destination="CGh-hp-Pju" eventType="touchUpInside" id="gcb-pb-2q0"/>
                                 </connections>
@@ -313,7 +312,7 @@ Once the Photo Capture flow is started you will not be able to exit until you ta
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFm-Dm-Bla">
                                 <rect key="frame" x="330" y="568" width="64" height="64"/>
                                 <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <state key="normal" title="＋">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
