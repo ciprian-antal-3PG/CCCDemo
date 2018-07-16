@@ -91,10 +91,10 @@
             </objects>
             <point key="canvasLocation" x="2017.5" y="133.09859154929578"/>
         </scene>
-        <!--Introduction-->
+        <!--Getting started-->
         <scene sceneID="S63-KW-qRw">
             <objects>
-                <viewController storyboardIdentifier="SetupViewController" title="Introduction" id="raV-SB-E2A" customClass="SetupViewController" customModule="GeicoCCC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SetupViewController" title="Getting started" id="raV-SB-E2A" customClass="SetupViewController" customModule="GeicoCCC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qLS-B4-JfD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -107,7 +107,7 @@
                                 </constraints>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOc-uH-MB2">
-                                <rect key="frame" x="85.666666666666686" y="124" width="244" height="21"/>
+                                <rect key="frame" x="51.333333333333343" y="124" width="311.66666666666663" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="3HS-d1-XFc"/>
                                 </constraints>
@@ -125,7 +125,13 @@
                                             <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
-                                    <fragment content=" if possible">
+                                    <fragment content=" ">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name=".AppleSystemUIFontItalic"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="(from VIN) if possible">
                                         <attributes>
                                             <font key="NSFont" size="13" name=".AppleSystemUIFontItalic"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -152,10 +158,21 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UgQ-Ts-xj0">
-                                <rect key="frame" x="30" y="343" width="354" height="112.33333333333331"/>
+                                <rect key="frame" x="30" y="343" width="354" height="84.333333333333314"/>
                                 <attributedString key="attributedText">
+                                    <fragment content="Instructions">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="HelveticaNeue-Bold"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" minimumLineHeight="14" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
                                     <fragment>
-                                        <string key="content">!!! Please note:
+                                        <string key="content">:
 </string>
                                         <attributes>
                                             <color key="NSColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -169,8 +186,8 @@
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">The Photo Capture process will require access your camera and your location
-Once the Photo Capture flow is started you will not be able to close it until you will take all the photos that are needed  **If the VIN is not confirmed you will be requested to take a picture of it**(some message)</mutableString>
+                                        <string key="content">The Photo Capture process will require access to your Camera and Location, otherwise you will not be able to use this feature. 
+Once the Photo Capture flow is started you will not be able to exit until you take all required photos.</string>
                                         <attributes>
                                             <color key="NSColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" size="12" name="HelveticaNeue"/>
@@ -221,8 +238,8 @@ Once the Photo Capture flow is started you will not be able to close it until yo
                                     <constraint firstAttribute="height" constant="64" id="7QZ-zY-0EK"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIN:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUt-rC-dMA">
-                                <rect key="frame" x="30.000000000000004" y="30" width="32.333333333333343" height="20.333333333333329"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your VIN:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUt-rC-dMA">
+                                <rect key="frame" x="29.999999999999993" y="30" width="71.333333333333314" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -288,30 +305,47 @@ Once the Photo Capture flow is started you will not be able to close it until yo
                                 <state key="normal" title="⬆︎">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="highlighted" title="Upload"/>
                                 <connections>
                                     <action selector="didTapUploadPhotos:" destination="CGh-hp-Pju" eventType="touchUpInside" id="gcb-pb-2q0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFm-Dm-Bla">
+                                <rect key="frame" x="330" y="568" width="64" height="64"/>
+                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="＋">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="addButtonPressed" destination="CGh-hp-Pju" eventType="touchUpInside" id="YnL-u2-Bv3"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="I5C-1i-NO4" firstAttribute="bottom" secondItem="Pun-9S-POg" secondAttribute="bottom" constant="20" id="8Sd-e2-3Rx"/>
+                            <constraint firstItem="I5C-1i-NO4" firstAttribute="trailing" secondItem="dFm-Dm-Bla" secondAttribute="trailing" constant="20" id="D9O-jb-b81"/>
+                            <constraint firstItem="dFm-Dm-Bla" firstAttribute="height" secondItem="Pun-9S-POg" secondAttribute="height" id="Jj3-At-owP"/>
+                            <constraint firstItem="Pun-9S-POg" firstAttribute="top" secondItem="dFm-Dm-Bla" secondAttribute="bottom" constant="20" id="P9c-H8-l2Y"/>
                             <constraint firstItem="I5C-1i-NO4" firstAttribute="bottom" secondItem="Cwi-ZA-Hte" secondAttribute="bottom" id="chp-po-ef4"/>
                             <constraint firstItem="I5C-1i-NO4" firstAttribute="trailing" secondItem="Cwi-ZA-Hte" secondAttribute="trailing" constant="30" id="dcd-yS-azo"/>
                             <constraint firstItem="I5C-1i-NO4" firstAttribute="trailing" secondItem="Pun-9S-POg" secondAttribute="trailing" constant="20" id="gwj-cc-Haa"/>
                             <constraint firstItem="Cwi-ZA-Hte" firstAttribute="leading" secondItem="I5C-1i-NO4" secondAttribute="leading" constant="30" id="q3c-fd-7Jh"/>
                             <constraint firstItem="Cwi-ZA-Hte" firstAttribute="top" secondItem="I5C-1i-NO4" secondAttribute="top" id="qRV-Cg-Qc2"/>
+                            <constraint firstItem="dFm-Dm-Bla" firstAttribute="width" secondItem="Pun-9S-POg" secondAttribute="width" id="shn-NX-kFx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="I5C-1i-NO4"/>
                     </view>
                     <connections>
+                        <outlet property="addPhotosButton" destination="dFm-Dm-Bla" id="Yw4-FK-pAs"/>
                         <outlet property="tableView" destination="Cwi-ZA-Hte" id="JOY-mw-x5N"/>
                         <outlet property="uploadButton" destination="Pun-9S-POg" id="LI8-0e-rrq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QZt-zX-Sgf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3518" y="133"/>
+            <point key="canvasLocation" x="3517.3913043478265" y="132.88043478260872"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="AAo-m7-S9K">

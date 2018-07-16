@@ -71,7 +71,7 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
     }
 
     @IBAction func scanVinButtonPressed(_ sender: Any) {
-        let alert = UIAlertController(title: "Scan VIN", message: "Entry point to vin scanning. Will be implemented in the integration phase.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Scan VIN", message: "Entry point to VIN scanning feature. Will be implemented in the Integration Phase.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Simulate scan", style: .cancel, handler: { [weak self] (_) in
             self?.scanVinButton.isHidden = true
             self?.confirmVinButton.isEnabled = false
