@@ -36,6 +36,8 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
 
         let cellNib = UINib(nibName: "PhotosTableViewCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "PhotosTableViewCell")
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 10
         
         uploadButton.layer.cornerRadius = uploadButton.frame.width / 2
 
