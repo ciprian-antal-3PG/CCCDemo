@@ -13,7 +13,8 @@ import CCCSDK
 class ReviewViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var uploadButton: UIButton!
-    
+    @IBOutlet private weak var addPhotosButton: UIButton!
+
     var photoCaptureVC: CCCPhotoCaptureVC?
     var progressView: UIProgressView?
 
@@ -36,18 +37,15 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
 
         let cellNib = UINib(nibName: "PhotosTableViewCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "PhotosTableViewCell")
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 10
         
         uploadButton.layer.cornerRadius = uploadButton.frame.width / 2
+        addPhotosButton.layer.cornerRadius = uploadButton.frame.width / 2
 
         if let photoCaptureVC = photoCaptureVC {
            photos = photoCaptureVC.allPhotoCaptureItems()
         }
-
-        var rightBarButtons = navigationItem.rightBarButtonItems
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed))
-        rightBarButtons?.append(addButton)
-
-        navigationItem.setRightBarButtonItems(rightBarButtons, animated: false)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -78,7 +76,7 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
         cellViewModels = models
     }
 
-    @objc private func addButtonPressed() {
+    @IBAction private func addButtonPressed() {
         if let claimId = photoCaptureVC?.claimId {
             photoCaptureVC = CCCPhotoCaptureVC.createAddPhotos(withClaimId: claimId, delegate: self)
 

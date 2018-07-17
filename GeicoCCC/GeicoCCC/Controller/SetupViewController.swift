@@ -12,12 +12,17 @@ import CCCPhotoComponents
 
 class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    @IBOutlet private weak var skipVINSwitch: UISwitch!
+    var claim: Claim?
+
+    @IBOutlet private weak var vinTextLabel: UILabel!
+    @IBOutlet private weak var scanVinButton: UIButton!
+    @IBOutlet private weak var confirmVinButton: UIButton!
+    @IBOutlet private weak var vinLabel: UILabel!
+
     @IBOutlet private weak var carPickerView: UIPickerView!
-    @IBOutlet private weak var carTypeLabel: UILabel!
-    
+
     private var pickerData: [String] = [String]()
-    private var skipVIN: Bool = false
+    private var vinConfirmed: Bool = false
     private var selectedVehicleType: CCCQECaptureVehicleType = CCCQECaptureVehichleTypeUNKNOWN
     private var photoCaptureVC: CCCPhotoCaptureVC?
     
@@ -33,6 +38,7 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
         super.viewDidLoad()
 
         setup()
+        populateVIN()
     }
 
     // MARK: UIPickerViewDataSource
@@ -58,15 +64,30 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
     }
 
     // MARK: UI Actions
-
-    @IBAction private func didTapVinSwitch(_ sender: Any) {
-        skipVIN = skipVINSwitch.isOn
+    @IBAction func confirmVinButtonPressed(_ sender: UIButton) {
+        sender.isEnabled = false
+        scanVinButton.isHidden = true
+        vinConfirmed = true
     }
-    
+
+    @IBAction func scanVinButtonPressed(_ sender: Any) {
+        let alert = UIAlertController(title: "Scan VIN", message: "Entry point to VIN scanning feature. Will be implemented in the Integration Phase.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Simulate scan", style: .cancel, handler: { [weak self] (_) in
+            self?.scanVinButton.isHidden = true
+            self?.confirmVinButton.isEnabled = false
+            self?.confirmVinButton.isHidden = false
+            self?.vinConfirmed = true
+            self?.vinLabel.text = "WF0HXXWPJH7M88550"
+            self?.vinLabel.isHidden = false
+            self?.vinTextLabel.isHidden = false
+        }))
+        present(alert, animated: true)
+    }
+
     @IBAction private func didTapPhotoCapture(_ sender: Any) {
         checkCameraPermission { [weak self] (authorized) in
             guard let strongSelf = self else { return }
-            guard let claimId = UserDefaults.standard.value(forKey: "CCCClaimId") as? String else { return }
+            guard let claimId = self?.claim?.claimID else { return }
 
             if !authorized {
                 strongSelf.displayAlert(title: "Camera access needed", message: "Go to Settings to allow camera access.")
@@ -86,7 +107,7 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
                                                                        skipVINThumbnail: false,
                                                                        withDataArray: nil)
 
-            if strongSelf.skipVIN, let photoEntities = strongSelf.photoCaptureVC?.thumbnailItems as? [CCCPhotoCaptureEntity] {
+            if strongSelf.vinConfirmed, let photoEntities = strongSelf.photoCaptureVC?.thumbnailItems as? [CCCPhotoCaptureEntity] {
                 let sorted = photoEntities.filter({ $0.title != "VIN" })
                 strongSelf.photoCaptureVC = CCCPhotoCaptureVC.create(withClaimId: claimId, delegate: self, andCustomItems: sorted)
             }
@@ -97,6 +118,17 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
     }
 
     // MARK: Private
+
+    private func populateVIN() {
+        guard let vin = claim?.vin else {
+            vinLabel.isHidden = true
+            vinTextLabel.isHidden = true
+            confirmVinButton.isHidden = true
+
+            return
+        }
+        vinLabel.text = vin
+    }
 
     private func setup() {
         setupPickerView()
