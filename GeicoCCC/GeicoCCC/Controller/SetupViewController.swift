@@ -79,11 +79,19 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
 
                 return
             }
+
             strongSelf.photoCaptureVC = CCCPhotoUtils.photoCaptureView(withClaimId: claimId,
                                                                        vehicleType: strongSelf.selectedVehicleType,
                                                                        delegate: self,
-                                                                       skipVINThumbnail: strongSelf.skipVIN,
+                                                                       skipVINThumbnail: false,
                                                                        withDataArray: nil)
+
+            if strongSelf.skipVIN, let photoEntities = strongSelf.photoCaptureVC?.thumbnailItems as? [CCCPhotoCaptureEntity] {
+                let sorted = photoEntities.filter({ $0.title != "VIN" })
+                strongSelf.photoCaptureVC = CCCPhotoCaptureVC.create(withClaimId: claimId, delegate: self, andCustomItems: sorted)
+            }
+
+            strongSelf.photoCaptureVC?.enableWizardStyle = true
             strongSelf.present(strongSelf.photoCaptureVC!, animated: true)
         }
     }
