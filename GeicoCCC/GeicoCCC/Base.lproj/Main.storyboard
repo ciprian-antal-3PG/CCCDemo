@@ -346,6 +346,39 @@ Once the Photo Capture flow is started you will not be able to exit until you ta
             </objects>
             <point key="canvasLocation" x="3517.3913043478265" y="132.88043478260872"/>
         </scene>
+        <!--Confirmation View Controller-->
+        <scene sceneID="kBp-yd-6pW">
+            <objects>
+                <viewController storyboardIdentifier="ConfirmationViewController" id="Ghz-kv-xzK" customClass="ConfirmationViewController" customModule="GeicoCCC" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g9V-X1-7wl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jQz-zr-G4P">
+                                <rect key="frame" x="30" y="20" width="354" height="622"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Ghz-kv-xzK" id="iha-w1-EhY"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jQz-zr-G4P" firstAttribute="leading" secondItem="A73-2j-Wrw" secondAttribute="leading" constant="30" id="6PK-iO-lx3"/>
+                            <constraint firstItem="A73-2j-Wrw" firstAttribute="bottom" secondItem="jQz-zr-G4P" secondAttribute="bottom" constant="94" id="Pvf-zr-nGg"/>
+                            <constraint firstItem="A73-2j-Wrw" firstAttribute="trailing" secondItem="jQz-zr-G4P" secondAttribute="trailing" constant="30" id="m4P-yK-WzF"/>
+                            <constraint firstItem="jQz-zr-G4P" firstAttribute="top" secondItem="A73-2j-Wrw" secondAttribute="top" id="pUb-pa-15B"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="A73-2j-Wrw"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="jQz-zr-G4P" id="iXa-8J-b6Y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gYH-9H-PCY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4311.594202898551" y="126.35869565217392"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="AAo-m7-S9K">
             <objects>

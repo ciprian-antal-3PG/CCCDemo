@@ -15,6 +15,7 @@
 		D102ADEF20E4BB3700E63F2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D102ADED20E4BB3700E63F2C /* Main.storyboard */; };
 		D102ADF120E4BB3900E63F2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D102ADF020E4BB3900E63F2C /* Assets.xcassets */; };
 		D102ADF420E4BB3900E63F2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D102ADF220E4BB3900E63F2C /* LaunchScreen.storyboard */; };
+		D130D41D20FDD9E800A248B7 /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D130D41C20FDD9E800A248B7 /* ConfirmationViewController.swift */; };
 		D163433620F8C70E00E9BF5A /* CCCSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D163433420F8C70E00E9BF5A /* CCCSDK.framework */; };
 		D163433720F8C79600E9BF5A /* CCCPhotoComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D163433320F8C70D00E9BF5A /* CCCPhotoComponents.framework */; };
 		D163433820F8C79600E9BF5A /* CCCPhotoComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D163433320F8C70D00E9BF5A /* CCCPhotoComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -55,6 +56,7 @@
 		D102ADF020E4BB3900E63F2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D102ADF320E4BB3900E63F2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D102ADF520E4BB3900E63F2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D130D41C20FDD9E800A248B7 /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
 		D163433320F8C70D00E9BF5A /* CCCPhotoComponents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CCCPhotoComponents.framework; sourceTree = "<group>"; };
 		D163433420F8C70E00E9BF5A /* CCCSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CCCSDK.framework; sourceTree = "<group>"; };
 		D17287E520EF677D007E020D /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				D1EDDF3720F3979C009E7A7E /* ReviewViewController.swift */,
 				6F81477E20E51F3B007EF23D /* SetupViewController.swift */,
 				D17287E520EF677D007E020D /* BaseViewController.swift */,
+				D130D41C20FDD9E800A248B7 /* ConfirmationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				D1EDDF3820F3979C009E7A7E /* ReviewViewController.swift in Sources */,
 				6F92355820F8CAB1001A852E /* ClaimDescriptionTableViewCell.swift in Sources */,
 				D1EDDF4420F4A0D7009E7A7E /* PhotoCollectionViewCell.swift in Sources */,
+				D130D41D20FDD9E800A248B7 /* ConfirmationViewController.swift in Sources */,
 				D102ADEA20E4BB3700E63F2C /* AppDelegate.swift in Sources */,
 				D1EDDF4720F5E368009E7A7E /* ClaimsViewController.swift in Sources */,
 				6F05A6DC20EFB44F00C98EA2 /* Claim.swift in Sources */,
