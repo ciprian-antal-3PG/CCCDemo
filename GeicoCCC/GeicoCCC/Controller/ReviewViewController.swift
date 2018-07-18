@@ -56,10 +56,8 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(NSNotification.Name.UIKeyboardDidShow)
-        NotificationCenter.default.removeObserver(NSNotification.Name.UIKeyboardWillHide)
-
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -71,9 +69,8 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ClaimDescriptionTableViewCell", for: indexPath) as? ClaimDescriptionTableViewCell {
                 cell.claimDescriptionTextView.delegate = self
                 return cell
-        }
-        }
-        else if let cell = tableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath) as? PhotosTableViewCell {
+            }
+        } else if let cell = tableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath) as? PhotosTableViewCell {
             let cellModel = cellViewModels[indexPath.row]
             cell.photos = cellModel.photos
             cell.title = cellModel.title
@@ -172,8 +169,7 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
             claimAdditionalText = ""
             textView.text = "Add comment to claim"
             textView.textColor = UIColor.lightGray
-        }
-        else if textView.text != "Add comment to claim" {
+        } else if textView.text != "Add comment to claim" {
             claimAdditionalText = textView.text
         }
     }
