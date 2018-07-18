@@ -133,6 +133,7 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
     private func presentConfirmation() {
         let confirmationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ConfirmationViewController") as? ConfirmationViewController
         confirmationVC?.photoCaptureVC = photoCaptureVC
+        confirmationVC?.generalComment = claimAdditionalText
         navigationController?.pushViewController(confirmationVC!, animated: true)
     }
     

@@ -14,6 +14,7 @@ class ConfirmationViewController: BaseViewController, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
 
     var photoCaptureVC: CCCPhotoCaptureVC?
+    var generalComment: String = ""
 
     private var photos: [CCCPhotoCaptureItem] = [] {
         didSet {
@@ -43,16 +44,27 @@ class ConfirmationViewController: BaseViewController, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellViewModels.count
+        return generalComment.isEmpty ? cellViewModels.count : cellViewModels.count + 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath) as? PhotosTableViewCell {
-            let cellModel = cellViewModels[indexPath.row]
-            cell.photos = cellModel.photos
-            cell.title = cellModel.title
+        switch indexPath.row {
+        case 0:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath) as? PhotosTableViewCell {
+                let cellModel = cellViewModels[indexPath.row]
+                cell.photos = cellModel.photos
+                cell.title = cellModel.title
 
-            return cell
+                return cell
+            }
+        case 1:
+            if !generalComment.isEmpty {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath)
+                cell.textLabel?.text = "Comment: " + generalComment
+
+                return cell
+            }
+        default: break
         }
         return UITableViewCell()
     }
