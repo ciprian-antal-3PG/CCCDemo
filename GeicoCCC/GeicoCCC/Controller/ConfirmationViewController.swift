@@ -38,6 +38,8 @@ class ConfirmationViewController: BaseViewController, UITableViewDataSource {
         if let photoCaptureVC = photoCaptureVC {
             photos = photoCaptureVC.allPhotoCaptureItems()
         }
+
+        navigationItem.hidesBackButton = true
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

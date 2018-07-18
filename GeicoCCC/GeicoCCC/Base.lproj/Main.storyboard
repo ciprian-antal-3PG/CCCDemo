@@ -346,10 +346,10 @@ Once the Photo Capture flow is started you will not be able to exit until you ta
             </objects>
             <point key="canvasLocation" x="3517.3913043478265" y="132.88043478260872"/>
         </scene>
-        <!--Confirmation View Controller-->
+        <!--Confirmation-->
         <scene sceneID="kBp-yd-6pW">
             <objects>
-                <viewController storyboardIdentifier="ConfirmationViewController" id="Ghz-kv-xzK" customClass="ConfirmationViewController" customModule="GeicoCCC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConfirmationViewController" title="Confirmation" id="Ghz-kv-xzK" customClass="ConfirmationViewController" customModule="GeicoCCC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g9V-X1-7wl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
