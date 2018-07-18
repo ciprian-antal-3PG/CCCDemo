@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6F05A6DC20EFB44F00C98EA2 /* Claim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F05A6DB20EFB44F00C98EA2 /* Claim.swift */; };
 		6F81477F20E51F3B007EF23D /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F81477E20E51F3B007EF23D /* SetupViewController.swift */; };
+		6F92355820F8CAB1001A852E /* ClaimDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F92355620F8CAB1001A852E /* ClaimDescriptionTableViewCell.swift */; };
+		6F92355920F8CAB1001A852E /* ClaimDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F92355720F8CAB1001A852E /* ClaimDescriptionTableViewCell.xib */; };
 		D102ADEA20E4BB3700E63F2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102ADE920E4BB3700E63F2C /* AppDelegate.swift */; };
 		D102ADEF20E4BB3700E63F2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D102ADED20E4BB3700E63F2C /* Main.storyboard */; };
 		D102ADF120E4BB3900E63F2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D102ADF020E4BB3900E63F2C /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 /* Begin PBXFileReference section */
 		6F05A6DB20EFB44F00C98EA2 /* Claim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Claim.swift; sourceTree = "<group>"; };
 		6F81477E20E51F3B007EF23D /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
+		6F92355620F8CAB1001A852E /* ClaimDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		6F92355720F8CAB1001A852E /* ClaimDescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClaimDescriptionTableViewCell.xib; sourceTree = "<group>"; };
 		D102ADE620E4BB3700E63F2C /* GeicoCCC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeicoCCC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D102ADE920E4BB3700E63F2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D102ADEE20E4BB3700E63F2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -148,6 +152,8 @@
 			children = (
 				D1EDDF3E20F4A041009E7A7E /* PhotosTableViewCell.swift */,
 				D1EDDF3F20F4A041009E7A7E /* PhotosTableViewCell.xib */,
+				6F92355620F8CAB1001A852E /* ClaimDescriptionTableViewCell.swift */,
+				6F92355720F8CAB1001A852E /* ClaimDescriptionTableViewCell.xib */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -242,6 +248,7 @@
 				D1EDDF4120F4A041009E7A7E /* PhotosTableViewCell.xib in Resources */,
 				D1EDDF4520F4A0D7009E7A7E /* PhotoCollectionViewCell.xib in Resources */,
 				D102ADF420E4BB3900E63F2C /* LaunchScreen.storyboard in Resources */,
+				6F92355920F8CAB1001A852E /* ClaimDescriptionTableViewCell.xib in Resources */,
 				D102ADF120E4BB3900E63F2C /* Assets.xcassets in Resources */,
 				D102ADEF20E4BB3700E63F2C /* Main.storyboard in Resources */,
 			);
@@ -257,6 +264,7 @@
 				D1EDDF4020F4A041009E7A7E /* PhotosTableViewCell.swift in Sources */,
 				D17287E620EF677D007E020D /* BaseViewController.swift in Sources */,
 				D1EDDF3820F3979C009E7A7E /* ReviewViewController.swift in Sources */,
+				6F92355820F8CAB1001A852E /* ClaimDescriptionTableViewCell.swift in Sources */,
 				D1EDDF4420F4A0D7009E7A7E /* PhotoCollectionViewCell.swift in Sources */,
 				D102ADEA20E4BB3700E63F2C /* AppDelegate.swift in Sources */,
 				D1EDDF4720F5E368009E7A7E /* ClaimsViewController.swift in Sources */,

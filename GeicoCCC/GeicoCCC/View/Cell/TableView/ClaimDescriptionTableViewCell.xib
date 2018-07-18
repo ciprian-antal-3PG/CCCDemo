@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="114" id="KGk-i7-Jjw" customClass="ClaimDescriptionTableViewCell" customModule="GeicoCCC" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="114"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="113.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Add comment to claim" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="aLD-RW-eHZ">
+                        <rect key="frame" x="0.0" y="41" width="320" height="68"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="68" id="DBO-cQ-Yu6"/>
+                        </constraints>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lv-ua-dUI">
+                        <rect key="frame" x="0.0" y="10" width="320" height="21"/>
+                        <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Claim Description">
+                                <attributes>
+                                    <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <font key="NSFont" metaFont="system" size="17"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" firstLineHeadIndent="4" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="4lv-ua-dUI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="5nY-QP-857"/>
+                    <constraint firstItem="4lv-ua-dUI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="62b-3s-es1"/>
+                    <constraint firstItem="aLD-RW-eHZ" firstAttribute="top" secondItem="4lv-ua-dUI" secondAttribute="bottom" constant="10" id="DoC-fN-YkR"/>
+                    <constraint firstItem="aLD-RW-eHZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Dxo-1F-Gsv"/>
+                    <constraint firstAttribute="trailing" secondItem="aLD-RW-eHZ" secondAttribute="trailing" id="Vxm-rZ-aUT"/>
+                    <constraint firstAttribute="trailing" secondItem="4lv-ua-dUI" secondAttribute="trailing" id="Zpc-nL-2qm"/>
+                    <constraint firstAttribute="bottom" secondItem="aLD-RW-eHZ" secondAttribute="bottom" constant="4.5" id="lOE-6J-wuA"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="claimDescriptionTextView" destination="aLD-RW-eHZ" id="bcN-iH-8y7"/>
+                <outlet property="titleLabel" destination="4lv-ua-dUI" id="AhP-Zy-9c8"/>
+            </connections>
+            <point key="canvasLocation" x="25" y="63"/>
+        </tableViewCell>
+    </objects>
+</document>

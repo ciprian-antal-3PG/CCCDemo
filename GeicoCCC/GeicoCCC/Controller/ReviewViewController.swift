@@ -10,15 +10,15 @@ import UIKit
 import CCCPhotoComponents
 import CCCSDK
 
-class ReviewViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
+class ReviewViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var uploadButton: UIButton!
     @IBOutlet private weak var addPhotosButton: UIButton!
 
     var photoCaptureVC: CCCPhotoCaptureVC?
     var progressView: UIProgressView?
-
     private var alertView: UIAlertController?
+    private var claimAdditionalText: String = ""
 
     private var photos: [CCCPhotoCaptureItem] = [] {
         didSet {
@@ -34,11 +34,19 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
+        tableView.contentInset = insets
 
         let cellNib = UINib(nibName: "PhotosTableViewCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "PhotosTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 10
+        let claimCellNib = UINib(nibName: "ClaimDescriptionTableViewCell", bundle: nil)
+        tableView.register(claimCellNib, forCellReuseIdentifier: "ClaimDescriptionTableViewCell")
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ReviewViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ReviewViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         uploadButton.layer.cornerRadius = uploadButton.frame.width / 2
         addPhotosButton.layer.cornerRadius = uploadButton.frame.width / 2
@@ -47,13 +55,22 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
            photos = photoCaptureVC.allPhotoCaptureItems()
         }
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellViewModels.count
+        return cellViewModels.count + 1 //extra row for claim description
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath) as? PhotosTableViewCell {
+        if indexPath.row == cellViewModels.count {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "ClaimDescriptionTableViewCell", for: indexPath) as? ClaimDescriptionTableViewCell {
+                cell.claimDescriptionTextView.delegate = self
+                return cell
+            }
+        } else if let cell = tableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath) as? PhotosTableViewCell {
             let cellModel = cellViewModels[indexPath.row]
             cell.photos = cellModel.photos
             cell.title = cellModel.title
@@ -91,7 +108,7 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
             presentUploadStatus()
             var uploadedPhotoCounter = 0
             
-            CCCUploadImages.uploadImagesInBackground(withImageList: photos, sessionID: sessionId, success: { _ in
+            CCCUploadImages.uploadImagesInBackground(withImageList: photos, sessionID: sessionId, damageDescription: claimAdditionalText, success: { _ in
                 uploadedPhotoCounter += 1
                 if uploadedPhotoCounter == photos.count {
                     self.alertView?.dismiss(animated: true)
@@ -129,6 +146,40 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
             progressView.progress = 0
             present(alertView, animated: true)
         }
+    }
+    
+    @objc func keyboardWillShow(_ notification:Notification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            tableView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height + 50, 0) // 50pt margin above keyboard
+        }
+    }
+    @objc func keyboardWillHide(_ notification:Notification) {
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if claimAdditionalText.isEmpty {
+            textView.text = ""
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            claimAdditionalText = ""
+            textView.text = "Add comment to claim"
+            textView.textColor = UIColor.lightGray
+        } else if textView.text != "Add comment to claim" {
+            claimAdditionalText = textView.text
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
 }
 
