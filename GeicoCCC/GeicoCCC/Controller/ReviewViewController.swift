@@ -113,7 +113,9 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
                 if uploadedPhotoCounter == photos.count {
                     self.alertView?.dismiss(animated: true)
                     let alert = UIAlertController(title: "Upload Successful", message: "\(uploadedPhotoCounter)/\(photos.count) photos finished uploading ", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { [weak self] (_) in
+                        self?.presentConfirmation()
+                    }))
                     self.present(alert, animated:true)
                 }
             }, failure: { [weak self] (error) in
@@ -126,6 +128,13 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
                 self?.progressView?.progress = progress / 100
             }
         }
+    }
+
+    private func presentConfirmation() {
+        let confirmationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ConfirmationViewController") as? ConfirmationViewController
+        confirmationVC?.photoCaptureVC = photoCaptureVC
+        confirmationVC?.generalComment = claimAdditionalText
+        navigationController?.pushViewController(confirmationVC!, animated: true)
     }
     
     func presentUploadStatus() {
