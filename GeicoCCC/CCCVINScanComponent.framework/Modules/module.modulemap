@@ -1,0 +1,6 @@
+framework module CCCVINScanComponent {
+  umbrella header "CCCVINScanComponent.h"
+
+  export *
+  module * { export * }
+}

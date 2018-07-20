@@ -106,45 +106,13 @@
                                     <constraint firstAttribute="width" constant="200" id="lcv-ho-O3i"/>
                                 </constraints>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOc-uH-MB2">
-                                <rect key="frame" x="51.333333333333343" y="124" width="311.66666666666663" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Car Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOc-uH-MB2">
+                                <rect key="frame" x="172.66666666666666" y="124" width="69" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="3HS-d1-XFc"/>
                                 </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="Car Type    ">
-                                        <attributes>
-                                            <font key="NSFont" metaFont="system" size="17"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="*automatically">
-                                        <attributes>
-                                            <font key="NSFont" size="13" name=".AppleSystemUIFontItalic"/>
-                                            <font key="NSOriginalFont" size="17" name=".AppleSystemUIFontItalic"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content=" ">
-                                        <attributes>
-                                            <font key="NSFont" size="17" name=".AppleSystemUIFontItalic"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="(from VIN) if possible">
-                                        <attributes>
-                                            <font key="NSFont" size="13" name=".AppleSystemUIFontItalic"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="*">
-                                        <attributes>
-                                            <font key="NSFont" size="13" name=".AppleSystemUIFontItalic"/>
-                                            <font key="NSOriginalFont" size="17" name=".AppleSystemUIFontItalic"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7LY-2r-Xh0">
@@ -244,6 +212,9 @@ Once the Photo Capture flow is started you will not be able to exit until you ta
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="e70-r5-jQ0">
+                                <rect key="frame" x="265" y="125" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -252,9 +223,11 @@ Once the Photo Capture flow is started you will not be able to exit until you ta
                             <constraint firstItem="GOc-uH-MB2" firstAttribute="centerX" secondItem="QzF-Fg-P6t" secondAttribute="centerX" id="4vz-mK-xJQ"/>
                             <constraint firstItem="zGI-dY-Kmo" firstAttribute="centerX" secondItem="QzF-Fg-P6t" secondAttribute="centerX" id="7q3-Cc-Asw"/>
                             <constraint firstItem="QzF-Fg-P6t" firstAttribute="trailing" secondItem="BI0-Lx-626" secondAttribute="trailing" constant="30" id="9cb-OH-9jV"/>
+                            <constraint firstItem="e70-r5-jQ0" firstAttribute="leading" secondItem="GOc-uH-MB2" secondAttribute="trailing" constant="23.333333333333343" id="L6f-Mh-1ni"/>
                             <constraint firstItem="GOc-uH-MB2" firstAttribute="top" secondItem="BI0-Lx-626" secondAttribute="bottom" constant="20" id="LfG-NM-Gj6"/>
                             <constraint firstItem="BI0-Lx-626" firstAttribute="top" secondItem="QzF-Fg-P6t" secondAttribute="top" constant="20" id="RP8-hv-rqN"/>
                             <constraint firstItem="UgQ-Ts-xj0" firstAttribute="top" secondItem="7LY-2r-Xh0" secondAttribute="bottom" constant="12" id="RhP-60-glL"/>
+                            <constraint firstItem="e70-r5-jQ0" firstAttribute="centerY" secondItem="GOc-uH-MB2" secondAttribute="centerY" id="WfW-7d-yYE"/>
                             <constraint firstItem="zGI-dY-Kmo" firstAttribute="top" secondItem="GOc-uH-MB2" secondAttribute="bottom" constant="10" id="Y9e-dg-CJa"/>
                             <constraint firstItem="UgQ-Ts-xj0" firstAttribute="leading" secondItem="QzF-Fg-P6t" secondAttribute="leading" constant="30" id="cxC-vy-hCR"/>
                             <constraint firstItem="7LY-2r-Xh0" firstAttribute="top" secondItem="zGI-dY-Kmo" secondAttribute="bottom" constant="36" id="jNS-zk-KS8"/>
@@ -266,7 +239,9 @@ Once the Photo Capture flow is started you will not be able to exit until you ta
                         <viewLayoutGuide key="safeArea" id="QzF-Fg-P6t"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="e70-r5-jQ0" id="hPq-fC-dpe"/>
                         <outlet property="carPickerView" destination="zGI-dY-Kmo" id="9gf-7g-c9z"/>
+                        <outlet property="carTypeLabel" destination="GOc-uH-MB2" id="QVT-Er-P2K"/>
                         <outlet property="confirmVinButton" destination="Rkj-tW-jCh" id="Igb-lZ-2SE"/>
                         <outlet property="scanVinButton" destination="GfI-aa-iZR" id="sHY-sZ-bHH"/>
                         <outlet property="vinLabel" destination="Xk9-Ma-Jj1" id="fKA-iq-Cfi"/>

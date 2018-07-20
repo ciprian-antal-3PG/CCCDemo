@@ -36,7 +36,7 @@ class PhotosTableViewCell: UITableViewCell, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell", for: indexPath) as? PhotoCollectionViewCell {
-            cell.setup(image: photos[indexPath.row].photo, title: photos[indexPath.row].photoTitle)
+            cell.setup(image: photos[indexPath.row].photo, title: photos[indexPath.row].saveTitle)
 
             return cell
         }
