@@ -193,7 +193,9 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
 extension SetupViewController: VinScannerVCDelegate {
     func didCompleteScanning(_ vinNumber: String!, isVINScanned: Bool, isVINValid: Bool, error: Error!) {
         guard isVINValid else {
+            vinScanVC?.dismiss(animated: true)
             let alert = UIAlertController(title: "Error", message: "This is not a valid VIN. Please try again", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             present(alert, animated: true)
             return
         }
@@ -204,10 +206,11 @@ extension SetupViewController: VinScannerVCDelegate {
         confirmVinButton.isHidden = false
         vinLabel.isHidden = false
         vinTextLabel.isHidden = false
-
-        vinScanVC?.dismiss(animated: true)
+        scanVinButton.isHidden = true
 
         decodeVIN()
+        
+        vinScanVC?.dismiss(animated: true)
     }
 
     private func decodeVIN() {
@@ -217,7 +220,7 @@ extension SetupViewController: VinScannerVCDelegate {
         CCCVinDecode.decodeVIN(claim?.vin) { [weak self] (vehicles, _) in
             if let vehicle = vehicles?.first, let bodyType = vehicle.bodyType {
                 self?.carTypeLabel.text = "Car Type: \(bodyType)"
-                self?.carPickerView.selectRow(self?.pickerData.index(of: bodyType) ?? 0, inComponent: 0, animated: true)
+                self?.carPickerView.selectRow(self?.pickerData.index(of: bodyType) ?? (self?.pickerData.index(of: "UNKNOWN") ?? 0), inComponent: 0, animated: true)
 
             } else {
                 self?.carTypeLabel.text = "Car Type: Unknown"
