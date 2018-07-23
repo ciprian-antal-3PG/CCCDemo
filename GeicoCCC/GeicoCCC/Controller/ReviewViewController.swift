@@ -10,7 +10,7 @@ import UIKit
 import CCCPhotoComponents
 import CCCSDK
 
-class ReviewViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
+class ReviewViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UIActionSheetDelegate {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var uploadButton: UIButton!
     @IBOutlet private weak var addPhotosButton: UIButton!
@@ -74,12 +74,27 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
             let cellModel = cellViewModels[indexPath.row]
             cell.photos = cellModel.photos
             cell.title = cellModel.title
+            cell.didTapOnPhoto = { photoItem in
+                let alert = UIAlertController(title: photoItem.saveTitle, message: "Would you like to", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: {(UIAlertAction)in
+                    if let photoVC = self.photoCaptureVC, let photoEntity = CCCPhotoUtils.thumbnailItem(for: CCCQECaptureVehicleTypeSED, withTitle: photoItem.saveTitle) {
+                        self.photoCaptureVC = CCCPhotoCaptureVC.createRetakePhoto(withClaimId: photoVC.claimId, delegate: self, andPhotoCaptureEntity: photoEntity)
+                        self.navigationController?.pushViewController(self.photoCaptureVC!, animated: true)
+                    }
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                self.present(alert, animated: true)
+            }
 
             return cell
         }
         return UITableViewCell()
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
     private func createCellViewModels() {
         let infoPhotos = photos.filter({ $0.saveTitle == "VIN" || $0.saveTitle == "Odometer" })
         let vehiclePhotos = photos.filter({ $0.saveTitle.contains("Side") })
@@ -194,10 +209,11 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
 
 extension ReviewViewController: CCCPhotoUtilsDelegate {
     func continueButtonTouched(_ storeEntities: [PhotoModel]!) {
-        if let photoCaptureVC = photoCaptureVC {
-            photos = photoCaptureVC.allPhotoCaptureItems()
+        guard let photoVC = photoCaptureVC else { return }
+        if photoVC.mode == CCCPhotoCaptureModeRetakePhoto, let retakePhoto = storeEntities.first {
+            CCCPhotoUtils.replacePhotoWithRetakePhoto(withClaimId: photoVC.claimId, title:retakePhoto.title, image: retakePhoto.photo)
         }
-
+        photos = photoVC.allPhotoCaptureItems()
         navigationController?.popViewController(animated: true)
     }
 

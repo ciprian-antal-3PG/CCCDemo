@@ -9,7 +9,7 @@
 import UIKit
 import CCCPhotoComponents
 
-class PhotosTableViewCell: UITableViewCell, UICollectionViewDataSource {
+class PhotosTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
 
     var photos: [CCCPhotoCaptureItem] = [] {
         didSet {
@@ -22,6 +22,8 @@ class PhotosTableViewCell: UITableViewCell, UICollectionViewDataSource {
             titleLabel.text = title
         }
     }
+    
+    var didTapOnPhoto: ((CCCPhotoCaptureItem)->())?
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
@@ -32,6 +34,7 @@ class PhotosTableViewCell: UITableViewCell, UICollectionViewDataSource {
         let nib = UINib(nibName: "PhotoCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "PhotoCollectionViewCell")
         collectionView.dataSource = self
+        collectionView.delegate = self
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -47,6 +50,10 @@ class PhotosTableViewCell: UITableViewCell, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos.count
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        didTapOnPhoto?(photos[indexPath.row])
+    }
 
     override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
         let automaticSize = super.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: horizontalFittingPriority, verticalFittingPriority: verticalFittingPriority)
@@ -57,5 +64,10 @@ class PhotosTableViewCell: UITableViewCell, UICollectionViewDataSource {
         let collectionHeight = collectionView.collectionViewLayout.collectionViewContentSize.height
 
         return CGSize(width: automaticSize.width, height: automaticSize.height + collectionHeight)
+    }
+    
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        print("Passing all touches to the next view (if any), in the view stack.")
+        return true
     }
 }
