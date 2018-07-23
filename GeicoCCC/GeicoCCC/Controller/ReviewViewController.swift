@@ -81,10 +81,10 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
     }
 
     private func createCellViewModels() {
-        let infoPhotos = photos.filter({ $0.photoTitle == "VIN" || $0.photoTitle == "Odometer" })
-        let vehiclePhotos = photos.filter({ $0.photoTitle.contains("Side") })
-        let damagePhotos = photos.filter({ $0.photoTitle.contains("Damage") })
-        let additionalPhotos = photos.filter({ $0.photoTitle.contains("Photo") })
+        let infoPhotos = photos.filter({ $0.saveTitle == "VIN" || $0.saveTitle == "Odometer" })
+        let vehiclePhotos = photos.filter({ $0.saveTitle.contains("Side") })
+        let damagePhotos = photos.filter({ $0.saveTitle.contains("Damage") })
+        let additionalPhotos = photos.filter({ $0.saveTitle.contains("Photo") })
 
         let models = [PhotosCellViewModel(title: "Information", photos: infoPhotos),
                       PhotosCellViewModel(title: "Vehicle", photos: vehiclePhotos),

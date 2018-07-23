@@ -9,30 +9,39 @@
 import UIKit
 import CCCSDK
 import CCCPhotoComponents
+import CCCVINScanComponent
 
 class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
     var claim: Claim?
 
     @IBOutlet private weak var vinTextLabel: UILabel!
     @IBOutlet private weak var scanVinButton: UIButton!
     @IBOutlet private weak var confirmVinButton: UIButton!
     @IBOutlet private weak var vinLabel: UILabel!
+    @IBOutlet private weak var carTypeLabel: UILabel!
 
     @IBOutlet private weak var carPickerView: UIPickerView!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
 
     private var pickerData: [String] = [String]()
-    private var vinConfirmed: Bool = false
+    private var vinScanned: Bool = false
+
+    private var hasVinOnFile: Bool {
+        return photoCaptureVC?.allPhotoCaptureItems().contains(where: {$0.saveTitle == "VIN"}) ?? false
+    }
+
     private var selectedVehicleType: CCCQECaptureVehicleType = CCCQECaptureVehichleTypeUNKNOWN
+
     private var photoCaptureVC: CCCPhotoCaptureVC?
-    
-    private let vehicleTypesDict = ["Unknown": CCCQECaptureVehichleTypeUNKNOWN,
-                                    "Sedan": CCCQECaptureVehicleTypeSED,
+    private var vinScanVC: CCCVINCaptureVC?
+
+    private let vehicleTypesDict = ["UNKNOWN": CCCQECaptureVehichleTypeUNKNOWN,
+                                    "SED": CCCQECaptureVehicleTypeSED,
                                     "SUV": CCCQECaptureVehicleTypeSUV,
-                                    "Coupe": CCCQECaptureVehicleTypeCOUPE,
-                                    "HatchBack": CCCQECaptureVehicleTypeHATCHBACK,
-                                    "Van": CCCQECaptureVehicleTypeVAN,
-                                    "Wagon": CCCQECaptureVehicleTypeWAGON]
+                                    "COUPE": CCCQECaptureVehicleTypeCOUPE,
+                                    "HATCHBACK": CCCQECaptureVehicleTypeHATCHBACK,
+                                    "VAN": CCCQECaptureVehicleTypeVAN,
+                                    "WAGON": CCCQECaptureVehicleTypeWAGON]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,21 +76,14 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
     @IBAction func confirmVinButtonPressed(_ sender: UIButton) {
         sender.isEnabled = false
         scanVinButton.isHidden = true
-        vinConfirmed = true
     }
 
     @IBAction func scanVinButtonPressed(_ sender: Any) {
-        let alert = UIAlertController(title: "Scan VIN", message: "Entry point to VIN scanning feature. Will be implemented in the Integration Phase.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Simulate scan", style: .cancel, handler: { [weak self] (_) in
-            self?.scanVinButton.isHidden = true
-            self?.confirmVinButton.isEnabled = false
-            self?.confirmVinButton.isHidden = false
-            self?.vinConfirmed = true
-            self?.vinLabel.text = "WF0HXXWPJH7M88550"
-            self?.vinLabel.isHidden = false
-            self?.vinTextLabel.isHidden = false
-        }))
-        present(alert, animated: true)
+        guard let claimId = claim?.claimID else { return }
+        vinScanVC = CCCVINCaptureVC.createVinScannerManualOptionView(with: self, claimId: claimId)
+        vinScanVC?.hasBackButton = true
+
+        present(vinScanVC!, animated: true)
     }
 
     @IBAction private func didTapPhotoCapture(_ sender: Any) {
@@ -102,12 +104,12 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
             }
 
             strongSelf.photoCaptureVC = CCCPhotoUtils.photoCaptureView(withClaimId: claimId,
-                                                                       vehicleType: strongSelf.selectedVehicleType,
-                                                                       delegate: self,
-                                                                       skipVINThumbnail: false,
-                                                                       withDataArray: nil)
+                                                            vehicleType: strongSelf.selectedVehicleType,
+                                                            delegate: self,
+                                                            skipVINThumbnail: false,
+                                                            withDataArray: nil)
 
-            if strongSelf.vinConfirmed, let photoEntities = strongSelf.photoCaptureVC?.thumbnailItems as? [CCCPhotoCaptureEntity] {
+            if (strongSelf.vinScanned || strongSelf.hasVinOnFile), let photoEntities = strongSelf.photoCaptureVC?.thumbnailItems as? [CCCPhotoCaptureEntity] {
                 let sorted = photoEntities.filter({ $0.title != "VIN" })
                 strongSelf.photoCaptureVC = CCCPhotoCaptureVC.create(withClaimId: claimId, delegate: self, andCustomItems: sorted)
             }
@@ -128,10 +130,18 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
             return
         }
         vinLabel.text = vin
+        decodeVIN()
     }
 
     private func setup() {
         setupPickerView()
+
+        guard let claimId = claim?.claimID else { return }
+        photoCaptureVC = CCCPhotoUtils.photoCaptureView(withClaimId: claimId,
+                                                        vehicleType: selectedVehicleType,
+                                                        delegate: self,
+                                                        skipVINThumbnail: false,
+                                                        withDataArray: nil)
     }
 
     private func setupPickerView() {
@@ -177,6 +187,47 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
 
         present(alert, animated: true)
+    }
+}
+
+extension SetupViewController: VinScannerVCDelegate {
+    func didCompleteScanning(_ vinNumber: String!, isVINScanned: Bool, isVINValid: Bool, error: Error!) {
+        guard isVINValid else {
+            vinScanVC?.dismiss(animated: true)
+            let alert = UIAlertController(title: "Error", message: "This is not a valid VIN. Please try again", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            present(alert, animated: true)
+            return
+        }
+        claim?.vin = vinNumber
+        vinScanned = isVINScanned
+        vinLabel.text = claim?.vin
+        confirmVinButton.isEnabled = false
+        confirmVinButton.isHidden = false
+        vinLabel.isHidden = false
+        vinTextLabel.isHidden = false
+        scanVinButton.isHidden = true
+
+        decodeVIN()
+        
+        vinScanVC?.dismiss(animated: true)
+    }
+
+    private func decodeVIN() {
+        carTypeLabel.text = "Car Type: Detecting..."
+        activityIndicator.startAnimating()
+
+        CCCVinDecode.decodeVIN(claim?.vin) { [weak self] (vehicles, _) in
+            if let vehicle = vehicles?.first, let bodyType = vehicle.bodyType {
+                self?.carTypeLabel.text = "Car Type: \(bodyType)"
+                self?.carPickerView.selectRow(self?.pickerData.index(of: bodyType) ?? (self?.pickerData.index(of: "UNKNOWN") ?? 0), inComponent: 0, animated: true)
+
+            } else {
+                self?.carTypeLabel.text = "Car Type: Unknown"
+                self?.carPickerView.selectRow(self?.pickerData.index(of: "UNKNOWN") ?? 0, inComponent: 0, animated: true)
+            }
+            self?.activityIndicator.stopAnimating()
+        }
     }
 }
 

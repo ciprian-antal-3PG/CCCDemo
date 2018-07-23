@@ -11,7 +11,7 @@ import UIKit
 struct Claim {
     let claimID: String
     let username: String
-    let vin: String?
+    var vin: String?
 
     init(claimID: String, username: String, vin: String? = nil) {
         self.claimID = claimID
