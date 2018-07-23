@@ -34,12 +34,12 @@ class PhotosTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollec
         let nib = UINib(nibName: "PhotoCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "PhotoCollectionViewCell")
         collectionView.dataSource = self
-        collectionView.delegate = self
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell", for: indexPath) as? PhotoCollectionViewCell {
             cell.setup(image: photos[indexPath.row].photo, title: photos[indexPath.row].saveTitle)
+            collectionView.delegate = self
 
             return cell
         }
@@ -53,6 +53,7 @@ class PhotosTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollec
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         didTapOnPhoto?(photos[indexPath.row])
+        collectionView.deselectItem(at: indexPath, animated: true)
     }
 
     override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
@@ -64,10 +65,5 @@ class PhotosTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollec
         let collectionHeight = collectionView.collectionViewLayout.collectionViewContentSize.height
 
         return CGSize(width: automaticSize.width, height: automaticSize.height + collectionHeight)
-    }
-    
-    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        print("Passing all touches to the next view (if any), in the view stack.")
-        return true
     }
 }
