@@ -25,7 +25,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
 
     override var isHighlighted: Bool {
         didSet {
-            imageView.alpha = isSelected ? 0.5 : 1
+            imageView.alpha = isHighlighted ? 0.5 : 1
         }
     }
 }
