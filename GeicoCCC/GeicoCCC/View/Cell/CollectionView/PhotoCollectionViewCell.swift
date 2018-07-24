@@ -16,4 +16,16 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         imageView.image = image
         titleLabel.text = title
     }
+
+    override var isSelected: Bool {
+        didSet {
+            imageView.alpha = isSelected ? 0.5 : 1
+        }
+    }
+
+    override var isHighlighted: Bool {
+        didSet {
+            imageView.alpha = isHighlighted ? 0.5 : 1
+        }
+    }
 }

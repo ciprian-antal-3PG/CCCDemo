@@ -104,10 +104,10 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
             }
 
             strongSelf.photoCaptureVC = CCCPhotoUtils.photoCaptureView(withClaimId: claimId,
-                                                            vehicleType: strongSelf.selectedVehicleType,
-                                                            delegate: self,
-                                                            skipVINThumbnail: false,
-                                                            withDataArray: nil)
+                                                                       vehicleType: strongSelf.selectedVehicleType,
+                                                                       delegate: self,
+                                                                       skipVINThumbnail: false,
+                                                                       withDataArray: nil)
 
             if (strongSelf.vinScanned || strongSelf.hasVinOnFile), let photoEntities = strongSelf.photoCaptureVC?.thumbnailItems as? [CCCPhotoCaptureEntity] {
                 let sorted = photoEntities.filter({ $0.title != "VIN" })
@@ -218,15 +218,15 @@ extension SetupViewController: VinScannerVCDelegate {
         activityIndicator.startAnimating()
 
         CCCVinDecode.decodeVIN(claim?.vin) { [weak self] (vehicles, _) in
-            if let vehicle = vehicles?.first, let bodyType = vehicle.bodyType {
-                self?.carTypeLabel.text = "Car Type: \(bodyType)"
-                self?.carPickerView.selectRow(self?.pickerData.index(of: bodyType) ?? (self?.pickerData.index(of: "UNKNOWN") ?? 0), inComponent: 0, animated: true)
+            guard let strongSelf = self else { return }
 
-            } else {
-                self?.carTypeLabel.text = "Car Type: Unknown"
-                self?.carPickerView.selectRow(self?.pickerData.index(of: "UNKNOWN") ?? 0, inComponent: 0, animated: true)
-            }
-            self?.activityIndicator.stopAnimating()
+            let bodyType = vehicles?.first?.bodyType ?? "UNKNOWN"
+            let index = strongSelf.pickerData.index(of: bodyType) ?? (strongSelf.pickerData.index(of: "UNKNOWN") ?? 0)
+
+            strongSelf.carTypeLabel.text = "Car Type: \(bodyType)"
+            strongSelf.carPickerView.selectRow(index, inComponent: 0, animated: true)
+            strongSelf.selectedVehicleType = strongSelf.vehicleTypesDict[strongSelf.pickerData[index]] ?? CCCQECaptureVehichleTypeUNKNOWN
+            strongSelf.activityIndicator.stopAnimating()
         }
     }
 }
