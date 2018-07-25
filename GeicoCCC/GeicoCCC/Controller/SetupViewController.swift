@@ -109,10 +109,22 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
                                                                        skipVINThumbnail: false,
                                                                        withDataArray: nil)
 
-            if (strongSelf.vinScanned || strongSelf.hasVinOnFile), let photoEntities = strongSelf.photoCaptureVC?.thumbnailItems as? [CCCPhotoCaptureEntity] {
-                let sorted = photoEntities.filter({ $0.title != "VIN" })
-                strongSelf.photoCaptureVC = CCCPhotoCaptureVC.create(withClaimId: claimId, delegate: self, andCustomItems: sorted)
+
+            guard var thumbnailItems = strongSelf.photoCaptureVC?.thumbnailItems as? [CCCPhotoCaptureEntity] else { return }
+
+            if let registrationItem = CCCPhotoCaptureEntity.create(withTitle: "Registration", thumbnail: #imageLiteral(resourceName: "Placeholder"),
+                                                                overlayHeader: "Registration header",
+                                                                overlayTitle: "Registration title",
+                                                                overlayDesc: "Registration description",
+                                                                overlayImage: #imageLiteral(resourceName: "Placeholder"), cameraOverlayIamge: nil,
+                                                                overlayAutoDisplay: true, saveTitle: "Registration") {
+                thumbnailItems.insert(registrationItem, at: thumbnailItems.count - 1)
             }
+
+            if (strongSelf.vinScanned || strongSelf.hasVinOnFile) {
+                thumbnailItems = thumbnailItems.filter({ $0.title != "VIN" })
+            }
+            strongSelf.photoCaptureVC = CCCPhotoCaptureVC.create(withClaimId: claimId, delegate: self, andCustomItems: thumbnailItems)
 
             strongSelf.photoCaptureVC?.enableWizardStyle = true
             strongSelf.present(strongSelf.photoCaptureVC!, animated: true)
