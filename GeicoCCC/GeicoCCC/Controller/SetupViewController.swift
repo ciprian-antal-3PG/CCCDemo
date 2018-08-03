@@ -232,12 +232,12 @@ extension SetupViewController: VinScannerVCDelegate {
         CCCVinDecode.decodeVIN(claim?.vin) { [weak self] (vehicles, _) in
             guard let strongSelf = self else { return }
 
-            let bodyType = vehicles?.first?.bodyType ?? "UNKNOWN"
-            let index = strongSelf.pickerData.index(of: bodyType) ?? (strongSelf.pickerData.index(of: "UNKNOWN") ?? 0)
+            let bodyType = vehicles?.first?.bodyType ?? "SED"
+            let index = strongSelf.pickerData.index(of: bodyType) ?? (strongSelf.pickerData.index(of: "SED") ?? 0)
 
             strongSelf.carTypeLabel.text = "Car Type: \(bodyType)"
             strongSelf.carPickerView.selectRow(index, inComponent: 0, animated: true)
-            strongSelf.selectedVehicleType = strongSelf.vehicleTypesDict[strongSelf.pickerData[index]] ?? CCCQECaptureVehichleTypeUNKNOWN
+            strongSelf.selectedVehicleType = strongSelf.vehicleTypesDict[strongSelf.pickerData[index]] ?? CCCQECaptureVehicleTypeSED
             strongSelf.activityIndicator.stopAnimating()
         }
     }
