@@ -18,7 +18,13 @@
 #define kConfigGlobalFloat(strKey) [ImageCommon getGlobalFloatForKey:strKey]
 #define kGetLuminance(R,G,B) (0.299*R + 0.587*G + 0.114*B)
 
-#define TakePhotoBlurValueThreshold 175.0
+#define TakePhotoBlurValueThreshold         175.0
+#define OriginalLaplacianBlurValueThreshold         200.0
+#define OriginalLaplaceBlurValueThreshold           200.0
+
+#define SizedLaplacianBlurValueThreshold            25.0
+#define SizedLaplaceBlurValueThreshold              70.0
+
 #define TakePhotoBrightnessThresholdConstant 0.8
 #define TakePhotoBrightAdjustmentConstant 10
 #define TakePhotoCompressImageQuality 0.65

@@ -28,22 +28,24 @@ typedef enum : NSUInteger {
     CCCPhotoCaptureModeMaxValue = CCCPhotoCaptureModeAddPhotos
 } CCCPhotoCaptureMode;
 
-//typedef enum : NSUInteger {
-//    // The default state has to be off - see LLSimpleCamera
-//    CCCPhotoCaptureFlashAuto = 0,
-//    CCCPhotoCaptureFlashOn,
-//    CCCPhotoCaptureFlashOff,
-//    CCCPhotoCaptureFlashMin = CCCPhotoCaptureFlashAuto,
-//    CCCPhotoCaptureFlashMax = CCCPhotoCaptureFlashOff
-//} CCCPhotoCaptureFlash;
+typedef enum : NSUInteger {
+    CCCPhotoCaptureRetake = 0,
+    CCCPhotoCaptureDuration,
+    CCCPhotoCaptureBlurry,
+    CCCPhotoCaptureHelpOverlay,
+    CCCPhotoCaptureFlashChange,
+    CCCPhotoCaptureCarouselClick,
+    CCCPhotoCaptureShowAdjusterInfo,
+    CCCPhotoCaptureTimeSpent,
+} CCCPhotoCaptureAnalyticsEventType;
 
 typedef enum : NSUInteger {
     // The default state has to be off - see LLSimpleCamera
     CCCPhotoCaptureFlashAuto = 0,
-    CCCPhotoCaptureFlashOff,
     CCCPhotoCaptureFlashOn,
+    CCCPhotoCaptureFlashOff,
     CCCPhotoCaptureFlashMin = CCCPhotoCaptureFlashAuto,
-    CCCPhotoCaptureFlashMax = CCCPhotoCaptureFlashOn
+    CCCPhotoCaptureFlashMax = CCCPhotoCaptureFlashOff
 } CCCPhotoCaptureFlash;
 
 typedef enum : NSUInteger {
@@ -52,19 +54,25 @@ typedef enum : NSUInteger {
     CCCPhotoCaptureOverlayTagDescription
 } CCCPhotoCaptureOverlayTag;
 
+typedef NS_ENUM(NSUInteger, PhotoCaptureOverlayType) {
+    PhotoCaptureOverlayTypeDefault  = 0,
+    PhotoCaptureOverlayTypeWithFooter   = 1,
+};
 
 @interface CCCPhotoCaptureVC : UIViewController
 
 #pragma mark - Photo capture function setting
+@property (nonatomic, strong) NSTimer *myTimer;
 
 /**
  *  Required - Delegate for check status of photo capture. Should be with some value if initialize from 'Create' function
  */
-@property (nonatomic, weak) id<CCCPhotoUtilsDelegate> delegate;
+@property (nonatomic, assign) id<CCCPhotoUtilsDelegate> delegate;
 /**
  *  Required - Claim id. Should be with some value if initialize from 'Create' function
  */
 @property (nonatomic, strong) NSString *claimId;
+
 /**
  *  Customization mode
  */
@@ -77,15 +85,24 @@ typedef enum : NSUInteger {
  *  Re-take photo entity
  */
 @property (nonatomic, strong) CCCPhotoCaptureEntity  *retakePhotoEntity;
-
 /**
  *  Adjuster Information
  */
 @property (nonatomic, strong) CCCPhotoCaptureAdjuster  *adjusterInfo;
+
+/**
+ *  Custom footer message for help overlay
+ */
+@property (nonatomic, strong) NSString *helpOverlayFooterMessage;
+
+@property (nonatomic, assign) PhotoCaptureOverlayType overlayType;
+
+
 /**
  *  If wizardStyle, carousel auto-advances to next item
  */
 @property (nonatomic, assign) BOOL enableWizardStyle;
+@property (nonatomic, assign) BOOL hideContinueButton;
 
 /**
  *  VIN barcode scanning support
@@ -100,24 +117,36 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong) NSMutableDictionary *savedImageDictionary;
 
-@property (nonatomic, assign) BOOL enableLocationServices;
+@property (nonatomic, strong) NSDate *startingTime;
 
-@property (nonatomic, assign) BOOL enableImageExposureAdjusted;
+@property (nonatomic, assign) BOOL enableBackButton;
 
 /**
  *  Always display empty default capture photo, if set to false then it will dispaly the lastest saved photos.
  */
 @property (nonatomic, assign) BOOL launchPhotoCaptureViewWithDefaultImagesAlways;
 
+@property (weak, nonatomic) IBOutlet UIImageView *cameraOverlayImage;
+
 #pragma mark - End-user customize elements
 @property (nonatomic, weak) IBOutlet UIView *backgroundView;
+
+@property (nonatomic, weak) IBOutlet UIView *useRetakeOperationArea;
 @property (nonatomic, weak) IBOutlet UIButton *retakeBtn;
 @property (nonatomic, weak) IBOutlet UIButton *usePhotoBtn;
 @property (nonatomic, weak) IBOutlet UIButton *continueBtn;
+
+@property (weak, nonatomic) IBOutlet UIView *ipXUserRetakeOperationArea;
+@property (nonatomic, weak) IBOutlet UIButton *ipXretakeBtn;
+@property (nonatomic, weak) IBOutlet UIButton *ipXusePhotoBtn;
+@property (nonatomic, weak) IBOutlet UIButton *iPXcontinueBtn;
+
 @property (nonatomic, weak) IBOutlet UIButton *manuallyEnterVINBtn;
 @property (nonatomic, weak) IBOutlet UIButton *snapBtn;
 
 @property (nonatomic, assign) BOOL showNavigateBar;
+
+@property (nonatomic, assign) BOOL enableImageExposureAdjusted;
 
 /**
  *  Allows the user to customize the top right help button
@@ -206,6 +235,28 @@ typedef enum : NSUInteger {
 + (CCCPhotoCaptureVC*)createRetakePhotoWithClaimId:(NSString *)claimId delegate:(id<CCCPhotoUtilsDelegate>)delegate andPhotoCaptureEntity:(CCCPhotoCaptureEntity *)entity;
 + (CCCPhotoCaptureVC* )createRetakePhotoWithClaimId:(NSString *)claimId delegate:(id<CCCPhotoUtilsDelegate>)delegate andPhotoCaptureEntity:(CCCPhotoCaptureEntity *)entity adjusterInfo:(CCCPhotoCaptureAdjuster *) adjuster;
 + (CCCPhotoCaptureVC*)createAddPhotosWithClaimId:(NSString *)claimId delegate:(id<CCCPhotoUtilsDelegate>)delegate;
+
++ (CCCPhotoCaptureVC*)createRetakePhotoWithClaimId:(NSString *)claimId delegate:(id<CCCPhotoUtilsDelegate>)delegate photoTitle :(NSString *) photoTitle andVehicleType:(CCCQECaptureVehicleType)type;
++ (CCCPhotoCaptureVC*)createRetakePhotoWithClaimId:(NSString *)claimId delegate:(id<CCCPhotoUtilsDelegate>)delegate photoTitle :(NSString *) photoTitle vehicleType:(CCCQECaptureVehicleType)type adjusterInfo:(CCCPhotoCaptureAdjuster *)adjuster;
+/**
+ Function for show up the photo capture, must use this function for show up this controller.
+ In default, it will check if it can use delegete as parent controller, otherwise do nothing.
+ */
+- (void)openUI;
+
+
+/**
+ Function for show up the photo capture, must use this function for show up this controller.
+
+ @param controller parent controller
+ */
+- (void)openUI:(UIViewController *)controller;
+
+/**
+ Function for dismiss the photo capture, must use this function for dismiss this controller.
+ */
+- (void)dismiss;
+
 #pragma mark -
 
 /**

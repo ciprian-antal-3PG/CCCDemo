@@ -77,8 +77,8 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
             cell.didTapOnPhoto = { photoItem in
                 let alert = UIAlertController(title: photoItem.saveTitle, message: "Would you like to", preferredStyle: .actionSheet)
                 alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: {(UIAlertAction)in
-                    if let photoVC = self.photoCaptureVC, let photoEntity = CCCPhotoUtils.thumbnailItem(for: CCCQECaptureVehicleTypeSED, withTitle: photoItem.saveTitle) {
-                        self.photoCaptureVC = CCCPhotoCaptureVC.createRetakePhoto(withClaimId: photoVC.claimId, delegate: self, andPhotoCaptureEntity: photoEntity)
+                    if let photoVC = self.photoCaptureVC {
+                        self.photoCaptureVC = CCCPhotoCaptureVC.createRetakePhoto(withClaimId: photoVC.claimId, delegate: self, photoTitle: photoItem.saveTitle, andVehicleType: CCCQECaptureVehicleTypeSED)
                         self.navigationController?.pushViewController(self.photoCaptureVC!, animated: true)
                     }
                 }))

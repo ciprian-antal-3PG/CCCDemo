@@ -125,6 +125,7 @@
 #define CCC_PHOTO_CAPTURE_SANDWICH                     @"hamburgerIcon"
 
 
+
 #define PERSIST_LOGIN_DATE_KEY @"loginDate"
 #define PERSIST_LOGIN_STATE_KEY @"loggedIn"
 #define PERSIST_CLAIM_KEYCHAIN_KEY @"claimId"
@@ -157,6 +158,7 @@ typedef NSNumber * UserLoginStatus;
 #define RETAKE_PHOTO_NAME_TO_BE_SAVED           @"RETAKE_PHOTO_NAME_TO_BE_SAVED"
 #define SAVE_IMAGE_COMPLETED                    @"SAVE_IMAGE_COMPLETED"
 
+
 typedef enum : NSUInteger {
     CCCQECaptureVehichleTypeUNKNOWN =0,
     CCCQECaptureVehicleTypeSED,
@@ -165,5 +167,7 @@ typedef enum : NSUInteger {
     CCCQECaptureVehicleTypeHATCHBACK,
     CCCQECaptureVehicleTypeVAN,
     CCCQECaptureVehicleTypeWAGON,
+    CCCQECaptureVehicleTypeTRUCK
 } CCCQECaptureVehicleType;
+
 

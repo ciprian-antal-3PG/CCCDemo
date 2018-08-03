@@ -127,6 +127,7 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
             strongSelf.photoCaptureVC = CCCPhotoCaptureVC.create(withClaimId: claimId, delegate: self, andCustomItems: thumbnailItems)
 
             strongSelf.photoCaptureVC?.enableWizardStyle = true
+            strongSelf.photoCaptureVC?.enableBackButton = true
             strongSelf.present(strongSelf.photoCaptureVC!, animated: true)
         }
     }

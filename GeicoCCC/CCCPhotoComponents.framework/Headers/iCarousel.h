@@ -143,6 +143,7 @@ typedef NS_ENUM(NSInteger, iCarouselOption)
 - (void)scrollByNumberOfItems:(NSInteger)itemCount duration:(NSTimeInterval)duration;
 - (void)scrollToItemAtIndex:(NSInteger)index duration:(NSTimeInterval)duration;
 - (void)scrollToItemAtIndex:(NSInteger)index animated:(BOOL)animated;
+- (void)scrollToItemAtIndex:(NSInteger)index animated:(BOOL)animated completionHandler:(void (^)(NSInteger currentItemIndex))completionHandler;
 
 - (UIView *)itemViewAtIndex:(NSInteger)index;
 - (NSInteger)indexOfItemView:(UIView *)view;
@@ -192,6 +193,7 @@ typedef NS_ENUM(NSInteger, iCarouselOption)
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value;
 -(BOOL)isScrollingAllowedForScrollOffset:(CGFloat)offset;
 
+- (NSString *)accessibilityAnnoucement:(NSInteger)index isForwarded:(BOOL)forwarded;
 @end
 
 #pragma GCC diagnostic pop

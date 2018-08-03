@@ -20,7 +20,7 @@
 @property (nonatomic, strong) UIImage *overlayImage;
 @property (nonatomic, strong) NSArray *animationOverlayImages;
 @property (nonatomic, strong) UIImage *cameraOverlayImage;
-
+@property (nonatomic, assign) BOOL allowRetake;
 
 @property (nonatomic, assign) BOOL autoDisplayFirstTime;
 @property (nonatomic, assign) BOOL hasBeenDisplayed;
@@ -31,44 +31,44 @@
 + (NSArray<CCCPhotoCaptureEntity *> *)makeDefaultItems ;
 
 + (CCCPhotoCaptureEntity *)createWithTitle:(NSString *)title
-                                   thumbnail:(UIImage *)thumbnail
-                               overlayHeader:(NSString *)header
-                                overlayTitle:(NSString *)title
-                                 overlayDesc:(NSString *)desc
-                                overlayImage:(UIImage *)image
-                          cameraOverlayIamge: (UIImage *) cameraOverlayImage
-                          overlayAutoDisplay:(BOOL)display  saveTitle:(NSString *)saveTitle;
+                                 thumbnail:(UIImage *)thumbnail
+                             overlayHeader:(NSString *)header
+                              overlayTitle:(NSString *)title
+                               overlayDesc:(NSString *)desc
+                              overlayImage:(UIImage *)image
+                        cameraOverlayIamge: (UIImage *) cameraOverlayImage
+                        overlayAutoDisplay:(BOOL)display  saveTitle:(NSString *)saveTitle;
 
 + (CCCPhotoCaptureEntity *)createWithTitle:(NSString *)title
-                                   thumbnail:(UIImage *)thumbnail
-                               overlayHeader:(NSString *)header
-                                overlayTitle:(NSString *)overlaytitle
-                                 overlayDesc:(NSString *)desc
-                                overlayImage:(UIImage *)image
+                                 thumbnail:(UIImage *)thumbnail
+                             overlayHeader:(NSString *)header
+                              overlayTitle:(NSString *)overlaytitle
+                               overlayDesc:(NSString *)desc
+                              overlayImage:(UIImage *)image
                         cameraOverlayIamge: (UIImage *) cameraOverlayImage saveTitle:(NSString *)saveTitle;
 
 + (CCCPhotoCaptureEntity *)createWithTitle:(NSString *)title
-                               overlayHeader:(NSString *)header
-                                overlayTitle:(NSString *)overlaytitle
-                                 overlayDesc:(NSString *)desc
-                          overlayAutoDisplay:(BOOL)display saveTitle:(NSString *)saveTitle;
+                             overlayHeader:(NSString *)header
+                              overlayTitle:(NSString *)overlaytitle
+                               overlayDesc:(NSString *)desc
+                        overlayAutoDisplay:(BOOL)display saveTitle:(NSString *)saveTitle;
 
 + (CCCPhotoCaptureEntity *)createWithTitle:(NSString *)title
-                                  bundleName:(NSString *)bundle
-                               thumbnailName:(NSString *)thumbnail
-                               overlayHeader:(NSString *)header
-                                overlayTitle:(NSString *)overlaytitle
-                                 overlayDesc:(NSString *)desc
-                            overlayImageName:(NSString *)image
+                                bundleName:(NSString *)bundle
+                             thumbnailName:(NSString *)thumbnail
+                             overlayHeader:(NSString *)header
+                              overlayTitle:(NSString *)overlaytitle
+                               overlayDesc:(NSString *)desc
+                          overlayImageName:(NSString *)image
                         cameraOverlayIamge: (UIImage *) cameraOverlayImage
-                          overlayAutoDisplay:(BOOL)display saveTitle:(NSString *)saveTitle;
+                        overlayAutoDisplay:(BOOL)display saveTitle:(NSString *)saveTitle;
 
 - (CCCPhotoCaptureEntity *)setThumbnailWithName:(NSString *)name
-                                      bunldeName:(NSString *)bundle;
+                                     bunldeName:(NSString *)bundle;
 - (CCCPhotoCaptureEntity *)setThumbnailWithPath:(NSString *)path;
 
 - (CCCPhotoCaptureEntity *)setOverlayWithName:(NSString *)name
-                                     bunldeName:(NSString *)bundle;
+                                   bunldeName:(NSString *)bundle;
 - (CCCPhotoCaptureEntity *)setOverlayWithPath:(NSString *)path;
 
 @end

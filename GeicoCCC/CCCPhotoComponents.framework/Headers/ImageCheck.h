@@ -9,7 +9,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-
+#import <AVFoundation/AVCaptureDevice.h>
 ///Enum containg different brightness status
 typedef enum {
     kBrightnessTooHigh,
@@ -20,6 +20,9 @@ typedef enum {
 @interface ImageCheck : NSObject
 ///Check and Analyze image Blurriness
 + (BOOL)checkImageIsBlurrUsingLaplacian:(UIImage *)image;
+
+///Another blur checking method
++ (BOOL)checkImageIsBlurrBaseOnPosition:(UIImage *)image;
 
 ///Calculate dark pixels from image.
 + (double)getBrightnessFromImage:(UIImage *)image;

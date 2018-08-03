@@ -13,7 +13,7 @@
 #import "CCCPhotoCapture_Global.h"
 #import "CCCPhotoCaptureAdjuster.h"
 
-#define CCC_PHOTO_CAPTURE_ADDITIONAL_PHOTO_TITLE_PREFIX         kConfigAppString(kKeyConfigTakePhotoAdditionalPhotoNamePrefix)
+#define CCC_PHOTO_CAPTURE_ADDITIONAL_PHOTO_TITLE_PREFIX         kConfigAppString(kKeyConfigTakePhotoAdditionalPhotoSaveNamePrefix)
 #define CCC_PHOTO_COMPONENTS_DIRECTORY_NAME                     @"CCCPhotos"
 #define CCC_PHOTO_COMPONENTS_RETAKE_DIRECTORY_NAME              @"Retakes"
 #define CCC_PHOTO_CAPTURE_ADDITIONAL_PHOTO_TITLE           [kConfigAppString(kKeyConfigTakePhotoAdditionalPhotoButtonTitle) stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"]
@@ -44,7 +44,7 @@ typedef enum : NSUInteger {
  *  @param storeEntities return lastest photo with title
  */
 - (void) continueButtonTouched:(NSArray<PhotoModel *> *)storeEntities;
-- (void) permissionErrorHandle:(CCCPhotoCaptureVC *)controller errorCode:(CCCPermissionErrorCode)code;
+//- (void) permissionErrorHandle:(CCCPhotoCaptureVC *)controller errorCode:(CCCPermissionErrorCode)code;
 
 @optional
 
@@ -80,6 +80,12 @@ typedef void (^CCCPhotoUtilsCompletionHandlerDoubleDouble)(double latitude, doub
  *
  */
 + (NSArray<CCCPhotoCaptureEntity *>*)builtinCCCPhotoCaptureEntitis;
+
+/**
+ *  return default CCCPhotoCaptureEntity array for VIN Skip
+ *
+ */
++ (NSArray<CCCPhotoCaptureEntity *>*)builtinCCCPhotoCaptureEntitisWithSkipVIN:(BOOL) skipVIN;
 
 /**
  *  returns default CCCPhotoCaptureEntity array
@@ -254,6 +260,7 @@ typedef void (^CCCPhotoUtilsCompletionHandlerDoubleDouble)(double latitude, doub
 
 + (CCCPhotoCaptureVC *)photoCaptureViewWithClaimId:(NSString*)claimId vehicleType:(CCCQECaptureVehicleType)type delegate:(id<CCCPhotoUtilsDelegate>)delegate skipVINThumbnail:(BOOL)skipVINThumbnail withDataArray:(NSArray *)dataArray;
 + (CCCPhotoCaptureVC *)photoCaptureViewWithClaimId:(NSString*)claimId vehicleType:(CCCQECaptureVehicleType)type delegate:(id<CCCPhotoUtilsDelegate>)delegate;
+
 + (CCCPhotoCaptureVC *)photoCaptureViewWithClaimId:(NSString*)claimId vehicleType:(CCCQECaptureVehicleType)type delegate:(id<CCCPhotoUtilsDelegate>)delegate adjusterInfo:(CCCPhotoCaptureAdjuster *) adjuster skipVINThumbnail:(BOOL)skipVINThumbnail;
 
 +(NSMutableArray<CCCPhotoCaptureEntity *> *)thumbnailItems;
@@ -261,6 +268,8 @@ typedef void (^CCCPhotoUtilsCompletionHandlerDoubleDouble)(double latitude, doub
 +(NSMutableArray<CCCPhotoCaptureEntity *> *)thumbnailItems:(CCCQECaptureVehicleType)type forceUpdate: (BOOL)force skipVINThumbnail:(BOOL)skipVINThumbnail;
 +(CCCPhotoCaptureEntity *)thumbnailItemForType:(CCCQECaptureVehicleType)type withTitle: (NSString *) title;
 
++ (void)clearThumbnailItems;
++ (void)setThumbnailItems:(NSArray<CCCPhotoCaptureEntity *> *)items;
 
 + (void)resetRetakeDictionaryClaimId:(NSString*)claimId;
 + (NSArray *)getRetakePhotoNamesFromUserDefaultsClaimId:(NSString*)claimId;
@@ -268,4 +277,9 @@ typedef void (^CCCPhotoUtilsCompletionHandlerDoubleDouble)(double latitude, doub
 +(void)setPhotoInAdditionalPhotosUserdefaultsTitle:(NSString*)title claimID:(NSString*)claimId;
 +(void)updateRetakePhotosUserdefaultsTitle:(NSString*)title claimID:(NSString*)claimId;
 +(void)resetPhotoComponents;
++(CCCQECaptureVehicleType) getBodyTypeEnum:(NSString *) bodyTypeCode;
++(NSMutableArray<CCCPhotoCaptureEntity *> *)thumbnailItemsFromArray:(NSMutableArray*)arrayItems;
++ (NSInteger) getNumberOfPhotosTakenWithClaimId:(NSString*)claimId thumbnailPreviewItems:(NSArray*)items;
++ (NSArray*) getAllPhotoNamesWithClaimId:(NSString *)claimId;
 @end
+

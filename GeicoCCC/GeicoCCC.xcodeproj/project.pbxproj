@@ -15,13 +15,13 @@
 		D102ADEF20E4BB3700E63F2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D102ADED20E4BB3700E63F2C /* Main.storyboard */; };
 		D102ADF120E4BB3900E63F2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D102ADF020E4BB3900E63F2C /* Assets.xcassets */; };
 		D102ADF420E4BB3900E63F2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D102ADF220E4BB3900E63F2C /* LaunchScreen.storyboard */; };
+		D130763E21143DD0008F80A0 /* CCCPhotoComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D130763C21143DC2008F80A0 /* CCCPhotoComponents.framework */; };
+		D130763F21143DD0008F80A0 /* CCCPhotoComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D130763C21143DC2008F80A0 /* CCCPhotoComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D130D41D20FDD9E800A248B7 /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D130D41C20FDD9E800A248B7 /* ConfirmationViewController.swift */; };
 		D130E2412101F54800A248B7 /* CCCVINScanComponent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D130E2402101F54800A248B7 /* CCCVINScanComponent.framework */; };
 		D130E2422101F55000A248B7 /* CCCVINScanComponent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D130E2402101F54800A248B7 /* CCCVINScanComponent.framework */; };
 		D130E2432101F55000A248B7 /* CCCVINScanComponent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D130E2402101F54800A248B7 /* CCCVINScanComponent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D163433620F8C70E00E9BF5A /* CCCSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D163433420F8C70E00E9BF5A /* CCCSDK.framework */; };
-		D163433720F8C79600E9BF5A /* CCCPhotoComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D163433320F8C70D00E9BF5A /* CCCPhotoComponents.framework */; };
-		D163433820F8C79600E9BF5A /* CCCPhotoComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D163433320F8C70D00E9BF5A /* CCCPhotoComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D163433A20F8C79600E9BF5A /* CCCSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D163433420F8C70E00E9BF5A /* CCCSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D17287E620EF677D007E020D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17287E520EF677D007E020D /* BaseViewController.swift */; };
 		D1C88DAB20F5F97500FB61C6 /* PhotosCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C88DAA20F5F97500FB61C6 /* PhotosCellViewModel.swift */; };
@@ -41,7 +41,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D130E2432101F55000A248B7 /* CCCVINScanComponent.framework in Embed Frameworks */,
-				D163433820F8C79600E9BF5A /* CCCPhotoComponents.framework in Embed Frameworks */,
+				D130763F21143DD0008F80A0 /* CCCPhotoComponents.framework in Embed Frameworks */,
 				D163433A20F8C79600E9BF5A /* CCCSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -60,9 +60,9 @@
 		D102ADF020E4BB3900E63F2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D102ADF320E4BB3900E63F2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D102ADF520E4BB3900E63F2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D130763C21143DC2008F80A0 /* CCCPhotoComponents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CCCPhotoComponents.framework; sourceTree = "<group>"; };
 		D130D41C20FDD9E800A248B7 /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
 		D130E2402101F54800A248B7 /* CCCVINScanComponent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CCCVINScanComponent.framework; sourceTree = "<group>"; };
-		D163433320F8C70D00E9BF5A /* CCCPhotoComponents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CCCPhotoComponents.framework; sourceTree = "<group>"; };
 		D163433420F8C70E00E9BF5A /* CCCSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CCCSDK.framework; sourceTree = "<group>"; };
 		D17287E520EF677D007E020D /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D1C88DAA20F5F97500FB61C6 /* PhotosCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCellViewModel.swift; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D130E2412101F54800A248B7 /* CCCVINScanComponent.framework in Frameworks */,
-				D163433720F8C79600E9BF5A /* CCCPhotoComponents.framework in Frameworks */,
+				D130763E21143DD0008F80A0 /* CCCPhotoComponents.framework in Frameworks */,
 				D163433620F8C70E00E9BF5A /* CCCSDK.framework in Frameworks */,
 				D130E2422101F55000A248B7 /* CCCVINScanComponent.framework in Frameworks */,
 			);
@@ -92,8 +92,8 @@
 		6D1221B4D42799609F5AB4A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D130763C21143DC2008F80A0 /* CCCPhotoComponents.framework */,
 				D130E2402101F54800A248B7 /* CCCVINScanComponent.framework */,
-				D163433320F8C70D00E9BF5A /* CCCPhotoComponents.framework */,
 				D163433420F8C70E00E9BF5A /* CCCSDK.framework */,
 			);
 			name = Frameworks;
@@ -427,14 +427,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W5LD47DYNR;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = GeicoCCC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.geico.GeicoCCC;
+				PRODUCT_BUNDLE_IDENTIFIER = com.personal.GeicoCCC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -445,14 +449,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W5LD47DYNR;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = GeicoCCC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.geico.GeicoCCC;
+				PRODUCT_BUNDLE_IDENTIFIER = com.personal.GeicoCCC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

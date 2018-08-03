@@ -18,4 +18,5 @@
 @property (nonatomic, copy) NSString *imagePath;
 @property (nonatomic, assign) double latitude;
 @property (nonatomic, assign) double longitude;
+@property (nonatomic, assign) BOOL allowRetake;
 @end

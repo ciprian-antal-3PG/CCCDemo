@@ -14,19 +14,13 @@ typedef enum : NSUInteger {
     CameraPositionFront
 } CameraPosition;
 
-//typedef enum : NSUInteger {
-//    // The default state has to be off
-//    CameraFlashOff,
-//    CameraFlashOn,
-//    CameraFlashAuto
-//} CameraFlash;
-
 typedef enum : NSUInteger {
     // The default state has to be off
-    CameraFlashAuto,
     CameraFlashOff,
-    CameraFlashOn
+    CameraFlashOn,
+    CameraFlashAuto
 } CameraFlash;
+
 typedef enum : NSUInteger {
     CameraQualityLow,
     CameraQualityMedium,
@@ -34,7 +28,11 @@ typedef enum : NSUInteger {
     CameraQualityPhoto
 } CameraQuality;
 
+
+
 @interface LLSimpleCamera : UIViewController
+
+typedef void(^SimpleCameraCaptureCallback)(LLSimpleCamera *camera, UIImage *image, NSDictionary *metadata, NSError *error);
 
 /**
  * Triggered on device change.
@@ -74,6 +72,13 @@ typedef enum : NSUInteger {
 - (instancetype)initWithQuality:(CameraQuality)quality andPosition:(CameraPosition)position;
 
 /**
+ Starts running the camera session
+ 
+ @param reset Force Reset the camera
+ */
+- (void)startWithForceReset:(BOOL)reset;
+
+/**
  * Starts running the camera session.
  */
 - (void)start;
@@ -82,6 +87,9 @@ typedef enum : NSUInteger {
  * Stops the running camera session. Needs to be called when the app doesn't show the view.
  */
 - (void)stop;
+
+
+- (void)attachToView:(UIView *)view inController:(UIViewController *)vc;
 
 /**
  * Attaches the LLSimpleCamera to another view controller with a frame. It basically adds the LLSimpleCamera as a
@@ -124,3 +132,4 @@ typedef enum : NSUInteger {
 
 
 @end
+

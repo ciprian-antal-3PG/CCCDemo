@@ -34,6 +34,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSString *photoPath;
 @property (nonatomic, strong) NSString *overlayImageName;
 @property (nonatomic, strong) NSBundle *bundle;
+@property (nonatomic, assign) BOOL allowRetake;
 
 @end
 
@@ -63,7 +64,8 @@ typedef enum : NSUInteger {
 + (NSString*) photoPathWithClaimId:(NSString*)claimId title:(NSString*)title;
 + (NSArray*) getAdditionalPhotoModelsWithClaimId:(NSString*)claimId;
 
- +(NSString*) additionalPhotoOverlayTitleWithNumber:(NSInteger)number;
++(NSString*) additionalPhotoOverlayTitleWithNumber:(NSInteger)number;
 +(NSString*) additionalPhotoSavenameWithNumber:(NSInteger)number;
 
 @end
+

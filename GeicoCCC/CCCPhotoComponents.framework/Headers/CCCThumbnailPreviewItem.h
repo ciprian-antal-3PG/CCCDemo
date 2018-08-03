@@ -19,6 +19,4 @@
 @property (nonatomic, strong) NSString *overlayHeader;
 @property (nonatomic, strong) NSString *overlayTitle;
 @property (nonatomic, strong) NSString *overlayDesc;
-@property (nonatomic, strong) UIImage *cameraOverlayImage;
-
 @end

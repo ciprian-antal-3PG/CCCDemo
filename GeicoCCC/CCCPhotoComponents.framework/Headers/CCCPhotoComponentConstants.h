@@ -22,10 +22,12 @@ typedef void (^GetLatLong)(BOOL isSucces, NSString* strText, CLLocationCoordinat
 #define kConfigAppColor(strKey) [CCCPhotoComponentConstants getGlobalColorForKey:strKey]
 #define kConfigAppBool(strKey) [CCCPhotoComponentConstants getGlobalBoolForKey:strKey]
 #define kGetDictionaryObjectForKey(dictionary,key) [dictionary objectForKey:key]?[dictionary objectForKey:key]:nil
+#define kAppdelegate (AppDelegate *)[[UIApplication sharedApplication] delegate]
 #define kIsSmallScreen ([[UIScreen mainScreen] bounds].size.width < 321.0f)
 #define kCheckIsEqualStrings(string1,string2) [string1 isEqualToString:string2]
 // Keys
 #pragma mark Help Overlay Screen Constants
+
 #define kKeyConfigHelpOverlayVehiclePhotoLabelColor @"HelpOverlayVehiclePhotoLabelColor"
 #define kKeyConfigHelpOverlayVehiclePhotoLabelFontType @"HelpOverlayVehiclePhotoLabelFontType"
 #define kKeyConfigHelpOverlayMidTitleLabelColor @"HelpOverlayMidTitleLabelColor"
@@ -74,6 +76,8 @@ typedef void (^GetLatLong)(BOOL isSucces, NSString* strText, CLLocationCoordinat
 #define kKeyConfigTakePhotoPageCountLabelFontType @"TakePhotoPageCountLabelFontType"
 #define kKeyConfigTakePhotoTextFlashButtonArray @"TakePhotoTextFlashButtonArray"
 #define kKeyConfigTakePhotoTextCarouselPreviewArray @"TakePhotoTextCarouselPreviewArray"
+
+#define kKeyConfigTakePhotoOrdering @"PhotoOrdering"
 #pragma mark NavigationBar
 #define kKeyConfigNavigationBarBackgroundColor @"NavigationBarBackgroundColor"
 #define kKeyConfigNavigationBarTitleFontType @"NavigationBarTitleFontType"
@@ -83,6 +87,11 @@ typedef void (^GetLatLong)(BOOL isSucces, NSString* strText, CLLocationCoordinat
 #define kKeyConfigNavigationBarIconTintColor @"NavigationBarIconTintColor"
 #define kKeyConfigNavigationBarFlashLabelFontType @"NavigationBarFlashLabelFontType"
 #define kKeyConfigNavigationBarFlashLabelFontColor @"NavigationBarFlashLabelFontColor"
+#define kKeyConfigNavigationBarBackButtonTintColor @"NavigationBarBackButtonTintColor"
+#define kKeyConfigHelpOverlayBackgroundColor @"HelpOverlayBackgroundColor"
+#define kKeyConfigAdjusterInfoButtonTintColor @"AdjusterInfoButtonTintColor"
+#define kKeyConfigHelpOverlayBackgroundColor @"HelpOverlayBackgroundColor"
+#define kKeyConfigManualVINButtonHighlightedFontColor @"ManualVINButtonHighlightedFontColor"
 
 
 // TODO remove if not needed
@@ -125,7 +134,6 @@ typedef void (^GetLatLong)(BOOL isSucces, NSString* strText, CLLocationCoordinat
 #define kKeyConfigApplicationBackgroundColor @"ApplicationBackgroundColor"
 #define kKeyConfigApplicationBoldStyleFontName @"ApplicationBoldStyleFontName"
 #define kKeyConfigApplicationRegularStyleFontName @"ApplicationRegularStyleFontName"
-#define kKeyConfigTakePhotoControllerStatusbarType @"TakePhotoControllerStatusbarType"
 #define kKeyConfigApplicationStatusbarType @"ApplicationStatusbarType"
 
 #pragma mark Adjuster Info
@@ -174,5 +182,6 @@ typedef void (^GetLatLong)(BOOL isSucces, NSString* strText, CLLocationCoordinat
 + (NSString*) getFormatedPhoneNumber:(NSString*)phoneNumber;
 // TODO Remove if not needed
 +(NSString*)getDisplayNameFromFileName:(NSString*)fileName;
++(id) getConfigHelpOverlayPhotoDetails:(NSString *) key details:(NSDictionary *) details;
 
 @end
