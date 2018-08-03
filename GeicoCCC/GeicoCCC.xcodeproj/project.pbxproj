@@ -11,19 +11,18 @@
 		6F81477F20E51F3B007EF23D /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F81477E20E51F3B007EF23D /* SetupViewController.swift */; };
 		6F92355820F8CAB1001A852E /* ClaimDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F92355620F8CAB1001A852E /* ClaimDescriptionTableViewCell.swift */; };
 		6F92355920F8CAB1001A852E /* ClaimDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F92355720F8CAB1001A852E /* ClaimDescriptionTableViewCell.xib */; };
+		B4A6D1E1340AD12191AEF925 /* Pods_GeicoCCC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4449A83582B7AC6EADB75C0A /* Pods_GeicoCCC.framework */; };
 		D102ADEA20E4BB3700E63F2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102ADE920E4BB3700E63F2C /* AppDelegate.swift */; };
 		D102ADEF20E4BB3700E63F2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D102ADED20E4BB3700E63F2C /* Main.storyboard */; };
 		D102ADF120E4BB3900E63F2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D102ADF020E4BB3900E63F2C /* Assets.xcassets */; };
 		D102ADF420E4BB3900E63F2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D102ADF220E4BB3900E63F2C /* LaunchScreen.storyboard */; };
+		D11088ED2111F39500CCA57D /* CCCVINScanComponent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D11088EB2111F38700CCA57D /* CCCVINScanComponent.framework */; };
+		D11088EE2111F39500CCA57D /* CCCVINScanComponent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D11088EB2111F38700CCA57D /* CCCVINScanComponent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D130D41D20FDD9E800A248B7 /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D130D41C20FDD9E800A248B7 /* ConfirmationViewController.swift */; };
-		D130E2412101F54800A248B7 /* CCCVINScanComponent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D130E2402101F54800A248B7 /* CCCVINScanComponent.framework */; };
-		D130E2422101F55000A248B7 /* CCCVINScanComponent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D130E2402101F54800A248B7 /* CCCVINScanComponent.framework */; };
-		D130E2432101F55000A248B7 /* CCCVINScanComponent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D130E2402101F54800A248B7 /* CCCVINScanComponent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D163433620F8C70E00E9BF5A /* CCCSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D163433420F8C70E00E9BF5A /* CCCSDK.framework */; };
-		D163433720F8C79600E9BF5A /* CCCPhotoComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D163433320F8C70D00E9BF5A /* CCCPhotoComponents.framework */; };
-		D163433820F8C79600E9BF5A /* CCCPhotoComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D163433320F8C70D00E9BF5A /* CCCPhotoComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D163433A20F8C79600E9BF5A /* CCCSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D163433420F8C70E00E9BF5A /* CCCSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D17287E620EF677D007E020D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17287E520EF677D007E020D /* BaseViewController.swift */; };
+		D17DE64B2111EB1C00A432F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D17DE64A2111EB1C00A432F5 /* GoogleService-Info.plist */; };
 		D1C88DAB20F5F97500FB61C6 /* PhotosCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C88DAA20F5F97500FB61C6 /* PhotosCellViewModel.swift */; };
 		D1EDDF3820F3979C009E7A7E /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EDDF3720F3979C009E7A7E /* ReviewViewController.swift */; };
 		D1EDDF4020F4A041009E7A7E /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EDDF3E20F4A041009E7A7E /* PhotosTableViewCell.swift */; };
@@ -40,8 +39,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D130E2432101F55000A248B7 /* CCCVINScanComponent.framework in Embed Frameworks */,
-				D163433820F8C79600E9BF5A /* CCCPhotoComponents.framework in Embed Frameworks */,
+				D11088EE2111F39500CCA57D /* CCCVINScanComponent.framework in Embed Frameworks */,
 				D163433A20F8C79600E9BF5A /* CCCSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -50,21 +48,23 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4449A83582B7AC6EADB75C0A /* Pods_GeicoCCC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeicoCCC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F05A6DB20EFB44F00C98EA2 /* Claim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Claim.swift; sourceTree = "<group>"; };
 		6F81477E20E51F3B007EF23D /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		6F92355620F8CAB1001A852E /* ClaimDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		6F92355720F8CAB1001A852E /* ClaimDescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClaimDescriptionTableViewCell.xib; sourceTree = "<group>"; };
+		99DBE8C7009A5ACB7D62F276 /* Pods-GeicoCCC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeicoCCC.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeicoCCC/Pods-GeicoCCC.release.xcconfig"; sourceTree = "<group>"; };
 		D102ADE620E4BB3700E63F2C /* GeicoCCC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeicoCCC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D102ADE920E4BB3700E63F2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D102ADEE20E4BB3700E63F2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D102ADF020E4BB3900E63F2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D102ADF320E4BB3900E63F2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D102ADF520E4BB3900E63F2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D11088EB2111F38700CCA57D /* CCCVINScanComponent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CCCVINScanComponent.framework; sourceTree = "<group>"; };
 		D130D41C20FDD9E800A248B7 /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
-		D130E2402101F54800A248B7 /* CCCVINScanComponent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CCCVINScanComponent.framework; sourceTree = "<group>"; };
-		D163433320F8C70D00E9BF5A /* CCCPhotoComponents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CCCPhotoComponents.framework; sourceTree = "<group>"; };
 		D163433420F8C70E00E9BF5A /* CCCSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CCCSDK.framework; sourceTree = "<group>"; };
 		D17287E520EF677D007E020D /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		D17DE64A2111EB1C00A432F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D1C88DAA20F5F97500FB61C6 /* PhotosCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCellViewModel.swift; sourceTree = "<group>"; };
 		D1EDDF3720F3979C009E7A7E /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		D1EDDF3E20F4A041009E7A7E /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
@@ -72,6 +72,7 @@
 		D1EDDF4220F4A0D7009E7A7E /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		D1EDDF4320F4A0D7009E7A7E /* PhotoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoCollectionViewCell.xib; sourceTree = "<group>"; };
 		D1EDDF4620F5E368009E7A7E /* ClaimsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimsViewController.swift; sourceTree = "<group>"; };
+		E98A4EB3F112417D7D8015E8 /* Pods-GeicoCCC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeicoCCC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeicoCCC/Pods-GeicoCCC.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,10 +80,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D130E2412101F54800A248B7 /* CCCVINScanComponent.framework in Frameworks */,
-				D163433720F8C79600E9BF5A /* CCCPhotoComponents.framework in Frameworks */,
 				D163433620F8C70E00E9BF5A /* CCCSDK.framework in Frameworks */,
-				D130E2422101F55000A248B7 /* CCCVINScanComponent.framework in Frameworks */,
+				D11088ED2111F39500CCA57D /* CCCVINScanComponent.framework in Frameworks */,
+				B4A6D1E1340AD12191AEF925 /* Pods_GeicoCCC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,9 +92,9 @@
 		6D1221B4D42799609F5AB4A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D130E2402101F54800A248B7 /* CCCVINScanComponent.framework */,
-				D163433320F8C70D00E9BF5A /* CCCPhotoComponents.framework */,
+				D11088EB2111F38700CCA57D /* CCCVINScanComponent.framework */,
 				D163433420F8C70E00E9BF5A /* CCCSDK.framework */,
+				4449A83582B7AC6EADB75C0A /* Pods_GeicoCCC.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -107,12 +107,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		73224113918092E72B7C003D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E98A4EB3F112417D7D8015E8 /* Pods-GeicoCCC.debug.xcconfig */,
+				99DBE8C7009A5ACB7D62F276 /* Pods-GeicoCCC.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D102ADDD20E4BB3700E63F2C = {
 			isa = PBXGroup;
 			children = (
 				D102ADE820E4BB3700E63F2C /* GeicoCCC */,
 				D102ADE720E4BB3700E63F2C /* Products */,
 				6D1221B4D42799609F5AB4A1 /* Frameworks */,
+				73224113918092E72B7C003D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,6 +146,7 @@
 				D102ADF220E4BB3900E63F2C /* LaunchScreen.storyboard */,
 				D102ADF020E4BB3900E63F2C /* Assets.xcassets */,
 				D102ADF520E4BB3900E63F2C /* Info.plist */,
+				D17DE64A2111EB1C00A432F5 /* GoogleService-Info.plist */,
 			);
 			path = GeicoCCC;
 			sourceTree = "<group>";
@@ -204,10 +215,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D102ADF820E4BB3900E63F2C /* Build configuration list for PBXNativeTarget "GeicoCCC" */;
 			buildPhases = (
+				BF7DB5740716F79C4854F5E4 /* [CP] Check Pods Manifest.lock */,
 				D102ADE220E4BB3700E63F2C /* Sources */,
 				D102ADE320E4BB3700E63F2C /* Frameworks */,
 				D102ADE420E4BB3700E63F2C /* Resources */,
 				D163433B20F8C79600E9BF5A /* Embed Frameworks */,
+				8935CE6E670E3E09823450FC /* [CP] Embed Pods Frameworks */,
+				64D67F6FA750EDD905F1994B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -262,10 +276,76 @@
 				6F92355920F8CAB1001A852E /* ClaimDescriptionTableViewCell.xib in Resources */,
 				D102ADF120E4BB3900E63F2C /* Assets.xcassets in Resources */,
 				D102ADEF20E4BB3700E63F2C /* Main.storyboard in Resources */,
+				D17DE64B2111EB1C00A432F5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		64D67F6FA750EDD905F1994B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GeicoCCC/Pods-GeicoCCC-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/GoogleMobileVision/GoogleMVTextDetectorResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMVTextDetectorResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeicoCCC/Pods-GeicoCCC-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8935CE6E670E3E09823450FC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GeicoCCC/Pods-GeicoCCC-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeicoCCC/Pods-GeicoCCC-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF7DB5740716F79C4854F5E4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GeicoCCC-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D102ADE220E4BB3700E63F2C /* Sources */ = {
@@ -424,16 +504,27 @@
 		};
 		D102ADF920E4BB3900E63F2C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E98A4EB3F112417D7D8015E8 /* Pods-GeicoCCC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				DEVELOPMENT_TEAM = W5LD47DYNR;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = GeicoCCC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.geico.GeicoCCC;
+				OTHER_LDFLAGS = (
+					"$(OTHER_LDFLAGS)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.prototype123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -442,16 +533,27 @@
 		};
 		D102ADFA20E4BB3900E63F2C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99DBE8C7009A5ACB7D62F276 /* Pods-GeicoCCC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				DEVELOPMENT_TEAM = W5LD47DYNR;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = GeicoCCC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.geico.GeicoCCC;
+				OTHER_LDFLAGS = (
+					"$(OTHER_LDFLAGS)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.prototype123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

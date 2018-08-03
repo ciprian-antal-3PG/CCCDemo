@@ -8,6 +8,7 @@
 
 import UIKit
 import CCCSDK
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         CCCSDK.sharedInstance().initializeCCCSDK(withCompanyCode: "GE", serverEnvironment: CT)
+        FirebaseApp.configure()
 
         return true
     }

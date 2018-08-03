@@ -203,26 +203,27 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
 }
 
 extension SetupViewController: VinScannerVCDelegate {
-    func didCompleteScanning(_ vinNumber: String!, isVINScanned: Bool, isVINValid: Bool, error: Error!) {
-        guard isVINValid else {
+    func didCompleteScanning(_ vinNumber: String?, isVINScanned: Bool, error: Error?) {
+        if let error = error  {
             vinScanVC?.dismiss(animated: true)
-            let alert = UIAlertController(title: "Error", message: "This is not a valid VIN. Please try again", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             present(alert, animated: true)
             return
-        }
-        claim?.vin = vinNumber
-        vinScanned = isVINScanned
-        vinLabel.text = claim?.vin
-        confirmVinButton.isEnabled = false
-        confirmVinButton.isHidden = false
-        vinLabel.isHidden = false
-        vinTextLabel.isHidden = false
-        scanVinButton.isHidden = true
+        } else {
+            claim?.vin = vinNumber
+            vinScanned = isVINScanned
+            vinLabel.text = claim?.vin
+            confirmVinButton.isEnabled = false
+            confirmVinButton.isHidden = false
+            vinLabel.isHidden = false
+            vinTextLabel.isHidden = false
+            scanVinButton.isHidden = true
 
-        decodeVIN()
-        
-        vinScanVC?.dismiss(animated: true)
+            decodeVIN()
+
+            vinScanVC?.dismiss(animated: true)
+        }
     }
 
     private func decodeVIN() {
@@ -232,12 +233,12 @@ extension SetupViewController: VinScannerVCDelegate {
         CCCVinDecode.decodeVIN(claim?.vin) { [weak self] (vehicles, _) in
             guard let strongSelf = self else { return }
 
-            let bodyType = vehicles?.first?.bodyType ?? "UNKNOWN"
-            let index = strongSelf.pickerData.index(of: bodyType) ?? (strongSelf.pickerData.index(of: "UNKNOWN") ?? 0)
+            let bodyType = vehicles?.first?.bodyType ?? "SED"
+            let index = strongSelf.pickerData.index(of: bodyType) ?? (strongSelf.pickerData.index(of: "SED") ?? 0)
 
             strongSelf.carTypeLabel.text = "Car Type: \(bodyType)"
             strongSelf.carPickerView.selectRow(index, inComponent: 0, animated: true)
-            strongSelf.selectedVehicleType = strongSelf.vehicleTypesDict[strongSelf.pickerData[index]] ?? CCCQECaptureVehichleTypeUNKNOWN
+            strongSelf.selectedVehicleType = strongSelf.vehicleTypesDict[strongSelf.pickerData[index]] ?? CCCQECaptureVehicleTypeSED
             strongSelf.activityIndicator.stopAnimating()
         }
     }

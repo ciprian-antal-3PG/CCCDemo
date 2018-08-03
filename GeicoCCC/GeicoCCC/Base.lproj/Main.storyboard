@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -178,14 +177,14 @@ Once the Photo Capture flow is started you will not be able to exit until you ta
                                 <rect key="frame" x="30" y="40" width="354" height="64"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WF0HXXWPJH7M88550" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xk9-Ma-Jj1">
-                                        <rect key="frame" x="0.0" y="0.0" width="203.33333333333334" height="64"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="203" height="64"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rkj-tW-jCh">
-                                        <rect key="frame" x="213.33333333333334" y="0.0" width="62.666666666666657" height="64"/>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                        <rect key="frame" x="213" y="0.0" width="62.666666666666686" height="64"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                         <state key="normal" title="Confirm "/>
                                         <state key="disabled" title="✔️"/>
                                         <connections>
@@ -193,7 +192,8 @@ Once the Photo Capture flow is started you will not be able to exit until you ta
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GfI-aa-iZR">
-                                        <rect key="frame" x="286" y="0.0" width="68" height="64"/>
+                                        <rect key="frame" x="285.66666666666669" y="0.0" width="68.333333333333314" height="64"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="Scan VIN"/>
                                         <connections>
                                             <action selector="scanVinButtonPressed:" destination="raV-SB-E2A" eventType="touchUpInside" id="y0o-Pf-pHP"/>
