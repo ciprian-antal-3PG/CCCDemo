@@ -128,7 +128,7 @@ class SetupViewController: BaseViewController, UIPickerViewDelegate, UIPickerVie
 
             strongSelf.photoCaptureVC?.enableWizardStyle = true
             strongSelf.photoCaptureVC?.enableBackButton = true
-            strongSelf.present(strongSelf.photoCaptureVC!, animated: true)
+            strongSelf.photoCaptureVC?.openUI()
         }
     }
 
@@ -254,7 +254,7 @@ extension SetupViewController: CCCPhotoUtilsDelegate {
             navigationController?.viewControllers = viewControllers
         }
 
-        photoCaptureVC?.dismiss(animated: true)
+        photoCaptureVC?.dismiss()
     }
 
     func permissionErrorHandle(_ controller: CCCPhotoCaptureVC!, errorCode code: CCCPermissionErrorCode) {

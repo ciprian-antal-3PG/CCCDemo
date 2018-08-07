@@ -77,9 +77,10 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
             cell.didTapOnPhoto = { photoItem in
                 let alert = UIAlertController(title: photoItem.saveTitle, message: "Would you like to", preferredStyle: .actionSheet)
                 alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: {(UIAlertAction)in
-                    if let photoVC = self.photoCaptureVC {
-                        self.photoCaptureVC = CCCPhotoCaptureVC.createRetakePhoto(withClaimId: photoVC.claimId, delegate: self, photoTitle: photoItem.saveTitle, andVehicleType: CCCQECaptureVehicleTypeSED)
-                        self.navigationController?.pushViewController(self.photoCaptureVC!, animated: true)
+                    if let claimId = self.photoCaptureVC?.claimId, let retakeEntity = self.photoCaptureVC?.getThumbnailItem(withDisplayTitle: photoItem.saveTitle) {
+                        self.photoCaptureVC = CCCPhotoCaptureVC.createRetakePhoto(withClaimId: claimId, delegate: self,
+                                                                                  andPhotoCaptureEntity: retakeEntity)
+                        self.photoCaptureVC?.openUI()
                     }
                 }))
                 alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
@@ -93,6 +94,10 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+    }
+
+    private func createRetakeEntity(for title: String) {
+        
     }
     
     private func createCellViewModels() {
@@ -112,7 +117,7 @@ class ReviewViewController: BaseViewController, UITableViewDataSource, UITableVi
         if let claimId = photoCaptureVC?.claimId {
             photoCaptureVC = CCCPhotoCaptureVC.createAddPhotos(withClaimId: claimId, delegate: self)
 
-            navigationController?.pushViewController(photoCaptureVC!, animated: true)
+            photoCaptureVC?.openUI()
         }
     }
     
@@ -211,10 +216,10 @@ extension ReviewViewController: CCCPhotoUtilsDelegate {
     func continueButtonTouched(_ storeEntities: [PhotoModel]!) {
         guard let photoVC = photoCaptureVC else { return }
         if photoVC.mode == CCCPhotoCaptureModeRetakePhoto, let retakePhoto = storeEntities.first {
-            CCCPhotoUtils.replacePhotoWithRetakePhoto(withClaimId: photoVC.claimId, title:retakePhoto.title, image: retakePhoto.photo)
+            CCCPhotoUtils.replacePhotoWithRetakePhoto(withClaimId: photoVC.claimId, title:retakePhoto.saveTitle, image: retakePhoto.photo)
         }
         photos = photoVC.allPhotoCaptureItems()
-        navigationController?.popViewController(animated: true)
+        photoVC.dismiss()
     }
 
     func permissionErrorHandle(_ controller: CCCPhotoCaptureVC!, errorCode code: CCCPermissionErrorCode) {}
